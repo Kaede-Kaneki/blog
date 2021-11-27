@@ -1,0 +1,145 @@
+@import "define";
+/*手机*/
+@media screen and (max-width: 768px) {
+  .header-wrap{
+    height: j(60);
+    padding: 0 j(10);
+    font-size: 16px !important;
+  }
+  .navbar-home{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 j(20);
+  }
+  .navbar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-top: j(60);
+    display: flex;
+    opacity: 0.9;
+    flex-direction: column;
+    background-color: bisque;
+    &-item{
+      padding: j(10) j(30);
+    }
+  }
+  .navbar-icon{
+    display: block;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 j(20);
+  }
+  .main-inner{
+    font-size: 16px!important;
+    padding: 0 j(30);
+  }
+}
+/*平板*/
+@media screen and (min-width: 768px) and (max-width: 992px){
+  .view-wrap{
+    background-color: skyblue;
+  }
+  .header-wrap{
+    height: j(45);
+    padding: 0 j(10);
+  }
+  .navbar-home{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 j(20);
+  }
+  .navbar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-top: j(45);
+    display: flex;
+    opacity: 0.9;
+    flex-direction: column;
+    background-color: bisque;
+    &-item{
+      padding: j(10) j(30);
+    }
+  }
+  .navbar-icon{
+    display: block;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 j(20);
+  }
+  .main-inner{
+    font-size: 16px!important;
+    padding: 0 j(30);
+  }
+}
+/*中等屏幕*/
+@media screen and (min-width: 993px) and (max-width: 1200px){
+  .header-wrap{
+    height: j(36);
+    padding: 0 j(60);
+  }
+  .view-wrap{
+    font-size: 14px;
+  }
+  .navbar{
+    display: block!important;
+    display: flex!important;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  .navbar-item{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding:0 j(20) ;
+    &:hover{
+      background-color: skyblue;
+    }
+  }
+  .navbar-icon{
+    display: none;
+  }
+  .main-inner{
+    padding: 0 j(60);
+  }
+}
+/*大屏幕，或者宽屏*/
+@media screen and (min-width: 1200px) {
+  .header-wrap{
+    height: j(36);
+    padding: 0 j(60);
+  }
+  .view-wrap{
+    font-size: 14px;
+  }
+  .navbar{
+    display: block!important;
+    display: flex!important;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  .navbar-item{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding:0 j(20) ;
+    &:hover{
+      background-color: skyblue;
+    }
+  }
+  .navbar-icon{
+    display: none;
+  }
+  .main-inner{
+    padding: 0 j(60);
+  }
+}
