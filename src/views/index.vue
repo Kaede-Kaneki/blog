@@ -1,18 +1,19 @@
 <template>
-  <div class="main-wrap">
+  <div class="beiye">
     <div class="header-wrap">
-      <router-link to="/" exact class="navbar-home">北野</router-link>
-      <i class="iconfont icon-caidan navbar-icon"  @click="handleNavBar"></i>
-      <transition name="fade">
-        <div class="navbar" v-show="visible"  >
-          <router-link class="navbar-item" to="blog">博客</router-link>
-          <router-link class="navbar-item" to="article">文章</router-link>
-          <router-link class="navbar-item" to="resource">资源</router-link>
-          <router-link class="navbar-item" to="about">关于</router-link>
-        </div>
-      </transition>
+      <router-link to="/" exact class="header-home">
+        <img class="header-home-logo" :src="require('src/assets/image/logo1.png')" alt="">
+        <h3 class="header-home-title">北野</h3>
+      </router-link>
+      <i class="iconfont icon-caidan navbar-icon" @click="handleNavBar"></i>
+      <div class="navbar" :class="{'active':visible}" @click="handleNavBar">
+        <router-link class="navbar-item" @click.native="handleToggle('0')" to="blog">博客</router-link>
+        <router-link class="navbar-item" @click.native="handleToggle('1')" to="article">文章</router-link>
+        <router-link class="navbar-item" @click.native="handleToggle('2')" to="resource">资源</router-link>
+        <router-link class="navbar-item" @click.native="handleToggle('3')" to="about">关于</router-link>
+      </div>
     </div>
-    <router-view class="main-inner"/>
+    <router-view class="main-wrap"/>
     <div class="footer-wrap">
       <p>{{ `Copyright ©${new Date().getFullYear()} Designed by 北野` }}</p>
     </div>
@@ -21,74 +22,94 @@
 
 <script>
 export default {
-  name: 'main-wrap',
+  name: 'beiye',
   components: {},
-  data(){
-    return{
-      visible:false,
+  data() {
+    return {
+      visible: this.$store.state.navBar,
     }
   },
-  methods:{
-    handleNavBar(){
-      this.visible=!this.visible
-    }
+  created() {
+
+  },
+  mounted() {
+  },
+  methods: {
+    handleNavBar() {
+      this.visible = !this.visible
+    },
+    handleToggle(e) {
+      console.log(e)
+    },
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "src/assets/scss/define";
 @import "src/assets/scss/media-screen";
-    .main-wrap {
-      @extend %df;
-      @extend %fdc;
-    }
-    .header-wrap {
-      @extend %pr;
-      @extend %df;
-      @extend %aic;
-      justify-content: space-between;
-      background-color: pink;
-      a.router-link-active {
-        color: #52BDA9;
-      }
-    }
-    .main-inner {
-      @extend %df1;
-      //padding: 0 j(60);
-      overflow-y: auto;
-    }
 
-    .footer-wrap {
-      @extend %df;
-      @extend %aic;
-      @extend %jcc;
-      @extend %c3;
-      background-color: #F9F6FA;
-      height: 100px;
-    }
+.beiye {
+  @extend %df;
+  @extend %fdc;
+}
 
-    .navbar-home {
-      @extend %df;
-      @extend %aic;
-      @extend %c3;
-      height: 100%;
-    }
+.header-wrap {
+  @extend %df;
+  @extend %aic;
+  @extend %jcs;
+  @extend %pr;
+  @extend %pf;
+  @extend %t0;
+  @extend %l0;
+  @extend %r0;
+  height: 46px;
+  background-color: #fff;
+  a.router-link-active {
+    color: #52BDA9;
+  }
+}
+
+.header-home {
+  @extend %df;
+  @extend %aic;
+  @extend %c3;
+  height: 100%;
+  &-logo {
+    @extend %br50;
+    width: j(20);
+    height: j(20);
+    padding: 0 j(5);
+  }
+}
+
+.navbar {
+  &.active{
+    @include tft(translate3d(0, 0, 0));
+  }
+  &-icon {
+    @extend %cp;
+  }
+  &-item {
+    @extend %c3;
+  }
+}
+
+.main-wrap {
+  @extend %df1;
+  margin-top: 46px;
+  overflow-y: auto;
+}
 
 
-    .fade-enter-active, .fade-leave-active {
-      transition: all 0.3s;
-      transform: translate3d(0,0%,0);
-    }
-    .fade-enter, .fade-leave-to  {
-      transform: translate3d(0,-200%,0);
-    }
+.footer-wrap {
+  @extend %df;
+  @extend %aic;
+  @extend %jcc;
+  @extend %c3;
+  height: 100px;
+  background-color: #fff;
+}
 
-    .navbar-item {
-      color: #333;
-    }
 
-    .navbar-icon {
-      @extend %cp;
-    }
 </style>

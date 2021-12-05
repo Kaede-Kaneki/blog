@@ -1,145 +1,215 @@
 @import "define";
+@import "reuse";
 /*手机*/
 @media screen and (max-width: 768px) {
-  .header-wrap{
+
+  .header-wrap {
     height: j(60);
     padding: 0 j(10);
     font-size: 16px !important;
   }
-  .navbar-home{
+  .header-home {
     display: flex;
     align-items: center;
     height: 100%;
-    padding: 0 j(20);
   }
-  .navbar{
+  .navbar {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    margin-top: j(60);
+    margin-top: 46px;
     display: flex;
-    opacity: 0.9;
     flex-direction: column;
-    background-color: bisque;
-    &-item{
-      padding: j(10) j(30);
+    opacity: 0.9;
+    @include tft(translate3d(0, -150%, 0));
+    @include tst(all,0.3s);
+    &-item {
+      padding: j(10) j(22);
+      background: #fff;
+      opacity: 1;
     }
+    &-icon {
+      display: block;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 j(8);
+    }
+
   }
-  .navbar-icon{
-    display: block;
-    display: flex;
-    align-items: center;
-    height: 100%;
-    padding: 0 j(20);
+  .main-wrap {
+    //font-size: 16px !important;
+    padding: 0 j(15);
+    //background-color: #6bc30d;
   }
-  .main-inner{
-    font-size: 16px!important;
-    padding: 0 j(30);
+  .home-header{
+    height: 80vh;
   }
+
 }
+
 /*平板*/
-@media screen and (min-width: 768px) and (max-width: 992px){
-  .view-wrap{
-    background-color: skyblue;
-  }
-  .header-wrap{
+@media screen and (min-width: 768px) and (max-width: 992px) {
+
+  .header-wrap {
     height: j(45);
     padding: 0 j(10);
+    font-size: 16px !important;
+
   }
-  .navbar-home{
+  .header-home {
     display: flex;
     align-items: center;
     height: 100%;
-    padding: 0 j(20);
   }
-  .navbar{
+
+  .navbar {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    margin-top: j(45);
+    margin-top: 46px;
     display: flex;
-    opacity: 0.9;
     flex-direction: column;
-    background-color: bisque;
-    &-item{
-      padding: j(10) j(30);
+    opacity: 0.9;
+    @include tft(translate3d(0, -150%, 0));
+    @include tst(all,0.3s);
+    &-item {
+      padding: j(10) j(22);
+      background: #fff;
+      opacity: 1;
     }
+
+    &-icon {
+      display: block;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 j(8);
+    }
+
   }
-  .navbar-icon{
-    display: block;
-    display: flex;
-    align-items: center;
-    height: 100%;
-    padding: 0 j(20);
-  }
-  .main-inner{
-    font-size: 16px!important;
-    padding: 0 j(30);
+  .main-wrap {
+    font-size: 16px !important;
+    padding: 0 j(15);
   }
 }
+
 /*中等屏幕*/
-@media screen and (min-width: 993px) and (max-width: 1200px){
-  .header-wrap{
+@media screen and (min-width: 993px) and (max-width: 1200px) {
+  .header-wrap {
     height: j(36);
     padding: 0 j(60);
+
+    a.router-link-active {
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 15%;
+        height: 2px;
+        width: 70%;
+        border-radius: 2px;
+        background-image: linear-gradient(
+                        90deg, #2db7f5, #6bc30d);
+        transition: all 0.3s ease;
+      }
+    }
   }
-  .view-wrap{
+  .header-home{
+    &-logo {
+      padding: 0 j(5) 0 0!important;
+    }
+  }
+  .view-wrap {
     font-size: 14px;
   }
-  .navbar{
-    display: block!important;
-    display: flex!important;
+  .navbar {
+    display: block !important;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     height: 100%;
-  }
-  .navbar-item{
-    display: flex;
-    align-items: center;
-    height: 100%;
-    padding:0 j(20) ;
-    &:hover{
-      background-color: skyblue;
+    &-icon {
+      display: none;
+    }
+    &-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 j(15);
+      &:hover {
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 15%;
+          height: 2px;
+          width: 70%;
+          border-radius: 2px;
+          background-image: linear-gradient(90deg, #2db7f5, #6bc30d);
+          transition: all 0.3s ease;
+        }
+      }
     }
   }
-  .navbar-icon{
-    display: none;
-  }
-  .main-inner{
+  .main-wrap {
     padding: 0 j(60);
   }
 }
+
 /*大屏幕，或者宽屏*/
 @media screen and (min-width: 1200px) {
-  .header-wrap{
+
+  .header-wrap {
     height: j(36);
     padding: 0 j(60);
+    a.router-link-active {
+      &:after {
+        content: '';
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        bottom: 0;
+        height: 2px;
+        width: j(30);
+        border-radius: 3px;
+        background-color: #52BDA9;
+      }
+
+    }
   }
-  .view-wrap{
+
+  .header-home{
+    &-logo {
+      padding: 0 j(5) 0 0!important;
+    }
+  }
+  .view-wrap {
     font-size: 14px;
   }
-  .navbar{
-    display: block!important;
-    display: flex!important;
+  .navbar {
+    //display: block!important;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     height: 100%;
-  }
-  .navbar-item{
-    display: flex;
-    align-items: center;
-    height: 100%;
-    padding:0 j(20) ;
-    &:hover{
-      background-color: skyblue;
+    &-icon{
+      display: none;
+    }
+    &-item{
+      //position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding: 0 j(15);
     }
   }
-  .navbar-icon{
-    display: none;
-  }
-  .main-inner{
+  .main-wrap {
     padding: 0 j(60);
   }
 }
