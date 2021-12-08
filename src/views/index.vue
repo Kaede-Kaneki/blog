@@ -7,10 +7,10 @@
       </router-link>
       <i class="iconfont icon-caidan navbar-icon" @click="handleNavBar"></i>
       <div class="navbar" :class="{'active':visible}" @click="handleNavBar">
-        <router-link class="navbar-item" @click.native="handleToggle('0')" to="blog">博客</router-link>
-        <router-link class="navbar-item" @click.native="handleToggle('1')" to="article">文章</router-link>
-        <router-link class="navbar-item" @click.native="handleToggle('2')" to="resource">资源</router-link>
-        <router-link class="navbar-item" @click.native="handleToggle('3')" to="about">关于</router-link>
+        <router-link class="navbar-item" @click.native="handleToggle('0')" to="/blog">博客</router-link>
+        <router-link class="navbar-item" @click.native="handleToggle('1')" to="/articles">文章</router-link>
+        <router-link class="navbar-item" @click.native="handleToggle('2')" to="/resource">资源</router-link>
+        <router-link class="navbar-item" @click.native="handleToggle('3')" to="/about">关于</router-link>
       </div>
     </div>
     <router-view class="main-wrap"/>
@@ -58,12 +58,14 @@ export default {
   @extend %df;
   @extend %aic;
   @extend %jcs;
-  @extend %pr;
+
   @extend %pf;
   @extend %t0;
   @extend %l0;
   @extend %r0;
+  @extend %pa;
   height: 46px;
+  z-index: 1;
   background-color: #fff;
   a.router-link-active {
     color: #52BDA9;
@@ -75,6 +77,7 @@ export default {
   @extend %aic;
   @extend %c3;
   height: 100%;
+  background-color: #fff;
   &-logo {
     @extend %br50;
     width: j(20);
@@ -85,7 +88,7 @@ export default {
 
 .navbar {
   &.active{
-    @include tft(translate3d(0, 0, 0));
+    @include tft(translate3d(0, 0%,0));
   }
   &-icon {
     @extend %cp;
@@ -97,6 +100,7 @@ export default {
 
 .main-wrap {
   @extend %df1;
+  //padding-top: 46px!important;
   margin-top: 46px;
   overflow-y: auto;
 }

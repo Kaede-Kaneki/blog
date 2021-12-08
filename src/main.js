@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import 'src/assets/iconfont/iconfont.scss'
 import 'github-markdown-css'
-import 'highlight.js/styles/tomorrow-night-bright.css'
+import 'highlight.js/scss/vs.scss'
 
 Vue.config.productionTip = false
 

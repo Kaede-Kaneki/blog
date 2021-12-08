@@ -24,12 +24,24 @@ const routes = [
                 component: ()=>import('src/views/blog/blog'),
                 meta:{
                     title: '博客'
-                }
+                },
+                children:[
+                    {
+                        path:'note',
+                        name:'Note',
+                        component: ()=>import('src/components/notes/index'),
+                    },
+                    {
+                        path:'test',
+                        name:'Test',
+                        component: ()=>import('src/components/notes/test'),
+                    },
+                ]
             },
             {
-                path:'article',
-                name:'Article',
-                component:()=>import('src/views/article/article'),
+                path:'articles',
+                name:'Passages',
+                component:()=>import('src/views/articles/index'),
                 meta: {
                     title: '文章'
                 }
@@ -51,10 +63,10 @@ const routes = [
                 }
             },
 
-            {
-                path:'*',
-                redirect:{name:'Home'}
-            }
+            // {
+            //     path:'*',
+            //     redirect:{name:'Home'}
+            // }
 
         ]
     },

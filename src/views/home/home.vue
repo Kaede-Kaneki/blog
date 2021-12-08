@@ -48,7 +48,9 @@ export default {
 @import "src/assets/scss/define";
 @import "src/assets/scss/media-screen";
 .home {
-  padding: 0 !important;
+  //padding: 0 !important;
+  padding-left: 0!important;
+  padding-right: 0!important;
   height: 100%;
   &-header {
     @extend %df;
@@ -81,9 +83,6 @@ export default {
       font-size: j(14);
       font-weight: normal;
       background-color: #fff;
-      //&:hover{
-      //  opacity: 0.8;
-      //}
     }
   }
 
@@ -100,6 +99,7 @@ export default {
       width: j(50);
       height: j(300);
       -webkit-transition: all 700ms linear;
+      transition: all 0.7s linear;
       &:first-child{
         padding-left: j(45);
       }
@@ -119,7 +119,7 @@ export default {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: j(500);
+      min-height: j(550);
       &-panel{
         width: j(330);
         height: j(50);

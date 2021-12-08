@@ -24,26 +24,28 @@
     min-height: 100vh;
     background-color: #f3f4f5;
   }
-html {
-  //box-sizing: border-box;
-  scrollbar-width: thin;
-}
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-  scrollbar-width: inherit;
-}
 
-// 伪元素无法继承
-*::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-*::-webkit-scrollbar-thumb {
-  background: hsl(214, 13%, 75%);
-  border-radius: 4px;
-}
+//html {
+//  //box-sizing: border-box;
+//  scrollbar-width: thin;
+//}
+//
+//*,
+//*:before,
+//*:after {
+//  box-sizing: inherit;
+//  scrollbar-width: inherit;
+//}
+//
+//// 伪元素无法继承
+//*::-webkit-scrollbar {
+//  width: 10px;
+//  height: 10px;
+//}
+//*::-webkit-scrollbar-thumb {
+//  background: hsl(214, 13%, 75%);
+//  border-radius: 4px;
+//}
 
 </style>

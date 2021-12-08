@@ -1,30 +1,50 @@
 <template>
   <div class="blog">
-    <br>
-    <div class="test">
-      <note class="markdown-body test" style="padding: j(50);border-radius: 50px"></note>
+    <div v-if="$route.path!=='/blog'" @click="$router.replace('/blog')" style="cursor: pointer">返回</div>
+    <div class="blog-content" v-if="$route.path==='/blog'">
+      <ul v-for="item in 12" :key="item.index">
+        <li>{{item}}</li>
+      </ul>
     </div>
-    <br>
+    <router-view class="markdown" v-else></router-view>
+    <div class="blog-menu" ref="menu">
+      <router-link
+          v-for="item in menuList"
+          :key="item.index"
+          :to="`${item.url}`"
+      >
+        {{ item.title }}
+      </router-link>
+    </div>
   </div>
 
 </template>
 
 <script>
-import Note from 'src/assets/notes/随笔.md'
 export default {
   name: "blog",
-  components: {
-    Note,
-  }
+  components: {},
+  data() {
+    return {
+      menuList: [
+        {
+          url: '/blog/note',
+          title: 'note',
+        },
+        {
+          url: '/blog/test',
+          title: 'test',
+        },
+      ],
+    }
+  },
+  mounted() {
+  },
+  methods: {}
 }
 </script>
 
 <style scoped lang="scss">
 @import 'src/assets/scss/define';
-.blog{
-  background-color: #f3f4f5;
-}
-.markdown-body {
-  padding: j(15) !important;
-}
+@import "src/assets/scss/media-screen";
 </style>
