@@ -60,7 +60,8 @@ export default {
     @extend %tac;
     padding: j(60) 0;
     min-height: j(272);
-    background: url("https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3453&q=80") no-repeat ;
+    background: url("../../assets/image/background.png") no-repeat;
+    //background: url("https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3453&q=80") no-repeat ;
     background-size: cover;
     &-title{
       font-size: j(30);

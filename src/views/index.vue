@@ -47,7 +47,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "src/assets/scss/define";
-@import "src/assets/scss/media-screen";
+//@import "src/assets/scss/media-screen";
 
 .beiye {
   @extend %df;
@@ -58,7 +58,6 @@ export default {
   @extend %df;
   @extend %aic;
   @extend %jcs;
-
   @extend %pf;
   @extend %t0;
   @extend %l0;
@@ -87,9 +86,9 @@ export default {
 }
 
 .navbar {
-  &.active{
-    @include tft(translate3d(0, 0%,0));
-  }
+  //&.active{
+  //  @include tft(translate3d(0, 0%,0));
+  //}
   &-icon {
     @extend %cp;
   }
