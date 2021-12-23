@@ -1,6 +1,6 @@
 // highlight.js  代码高亮指令
 import Hljs from 'highlight.js';
-import 'highlight.js/styles/vs.css'; // 代码高亮风格
+import 'highlight.js/styles/github.css'; // 代码高亮风格
 
 let Highlight = {};
 // 自定义插件

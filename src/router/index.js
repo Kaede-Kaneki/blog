@@ -27,14 +27,9 @@ const routes = [
                 },
                 children:[
                     {
-                        path:'note',
+                        path:':note',
                         name:'Note',
-                        component: ()=>import('src/components/notes/index'),
-                    },
-                    {
-                        path:'test',
-                        name:'Test',
-                        component: ()=>import('src/components/notes/test'),
+                        component: ()=>import('src/views/blog/note'),
                     },
                 ]
             },
@@ -76,7 +71,14 @@ const routes = [
 
 const router = new VueRouter({
     mode:'hash',
-    routes
+    routes,
+    scrollBehavior(to,from,saveTop){
+        if(saveTop){
+            return saveTop;
+        }else{
+            return {x:0,y:0}
+        }
+    },
 })
 
 export default router

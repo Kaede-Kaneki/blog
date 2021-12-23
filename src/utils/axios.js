@@ -21,8 +21,8 @@ _axios.interceptors.request.use(
         // 这里的config包含每次请求的内容
         config.timeout = 60 * 1000
         // console.log('request success =>', config)
-        const {baseURL, url, method, data} = config
-        console.log(`${baseURL + url} [${method}] 请求参数=>`, data)
+        const {baseURL, url, method, params} = config
+        console.log(`${baseURL + url} [${method}] 请求参数=>`, params)
         return config
     },
     error => {
@@ -62,11 +62,11 @@ _axios.interceptors.response.use(
     }
 )
 
-export default (url, data = {}, method = '' ,) => {
+export default (url, data = {},) => {
     return _axios({
         url,
-        data: data,
-        method: method || 'GET',
+        params: data,
+        method: 'GET',
     }).finally(() => {
         // toast && toast.clear()
     })
