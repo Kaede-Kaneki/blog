@@ -29,10 +29,8 @@ export default {
       visible: this.$store.state.navBar,
     }
   },
-  created() {
+   created() {
 
-  },
-  mounted() {
   },
   methods: {
     handleNavBar() {

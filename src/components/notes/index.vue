@@ -5,17 +5,26 @@
 </template>
 
 <script>
-import Note from 'src/assets/notes/随笔.md'
+import Note from 'src/assets/notes/test.md'
 export default {
   name: "index",
   data() {
     return {
+      content:''
     }
   },
   components: {
     Note,
   },
-  methods: {},
+  created() {
+    this.getMd()
+  },
+  methods: {
+    async getMd(){
+      const data= await this.$api.reqMd()
+      this.content=data
+    }
+  },
 }
 </script>
 

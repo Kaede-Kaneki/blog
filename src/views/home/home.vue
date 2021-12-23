@@ -3,7 +3,7 @@
     <div class="home-header">
       <h1 class="home-header-title">北野</h1>
       <span class="home-header-info">Something for nothing ...</span>
-      <router-link class="home-header-btn" to="#">Get Started</router-link>
+      <router-link class="home-header-btn" to="#" >Get Started</router-link>
     </div>
     <div class="home-content">
         <div class="home-content-panel"
@@ -39,7 +39,10 @@ export default {
   methods:{
     handleClick(index){
       this.$store.dispatch('actionsHomeImgList',index)
-    }
+    },
+    handleTest(){
+      this.test()
+    },
   }
 }
 </script>
