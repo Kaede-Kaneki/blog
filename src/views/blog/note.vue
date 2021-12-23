@@ -1,5 +1,16 @@
 <template >
-  <div class="markdown-body" v-highlight v-html="text"></div>
+  <div style="display: flex;">
+    <div class="markdown markdown-body " v-highlight v-html="item.content"></div>
+    <div class="blog-menu" ref="menu">
+      <span>目录</span>
+      <a href="javascript:"
+         v-for="item in 10"
+         :key="item.id"
+      >
+        {{ item}}
+      </a>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -7,11 +18,11 @@ export default {
   name: "note",
   data() {
     return {
-      text:'',
+      item:'',
     }
   },
   created() {
-    this.text=this.$route.query.item.content
+    this.item=this.$route.query.item
   },
   methods: {},
 }

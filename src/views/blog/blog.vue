@@ -9,8 +9,8 @@
         <p class="blog-item-content" >{{item.desc}}</p>
       </div>
     </div>
-    <router-view class="markdown" v-else></router-view>
-    <div class="blog-menu" ref="menu">
+    <router-view  v-else></router-view>
+    <div class="blog-menu" ref="menu" v-if="$route.path==='/blog'">
       <a href="javascript:"
          v-for="item in menuList"
          :key="item.id"
