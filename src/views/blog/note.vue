@@ -21,9 +21,17 @@ export default {
         }
     },
     created() {
-        this.item = this.$route.query.item
+        this.setStorage(this.$route.query.item)
+        this.updateStorage()
     },
-    methods: {},
+    methods: {
+        setStorage(item){
+            typeof item !== 'string' && sessionStorage.setItem("article",JSON.stringify(item))
+        },
+        updateStorage(){
+            this.item=JSON.parse(sessionStorage.getItem("article"))
+        },
+    },
 }
 </script>
 

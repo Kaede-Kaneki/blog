@@ -8,7 +8,7 @@
       <i class="iconfont icon-caidan navbar-icon" @click="handleNavBar"></i>
       <div class="navbar" :class="{'active':visible}" @click="handleNavBar">
         <router-link class="navbar-item" @click.native="handleToggle('0')" to="/blog">博客</router-link>
-        <router-link class="navbar-item" @click.native="handleToggle('1')" to="/articles">文章</router-link>
+        <router-link class="navbar-item" @click.native="handleToggle('1')" to="/articles">随笔</router-link>
         <router-link class="navbar-item" @click.native="handleToggle('2')" to="/resource">资源</router-link>
         <router-link class="navbar-item" @click.native="handleToggle('3')" to="/about">关于</router-link>
       </div>
