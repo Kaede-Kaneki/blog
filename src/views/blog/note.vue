@@ -2,7 +2,7 @@
     <div class="note">
         <div class="note-content markdown markdown-body" v-highlight v-html="item.content"></div>
         <div class="note-menu" ref="menu">
-            <a>目录</a>
+            <a v-if="title">目录</a>
             <a href="javascript:" v-for="item in title" :key="item.index" v-html="item"></a>
         </div>
     </div>
