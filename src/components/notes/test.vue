@@ -2,7 +2,6 @@
   <div class="markdown-body" style="overflow-x: hidden">
     <div v-html="compiledMarkdown" v-highlight></div>
   </div>
-
 </template>
 
 <script>
