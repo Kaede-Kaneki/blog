@@ -1,6 +1,5 @@
 import marked from "marked";
 
-
 marked.setOptions({
         renderer: new marked.Renderer(),
         pedantic: false,
@@ -13,7 +12,5 @@ marked.setOptions({
         xhtml: false
     }
 )
-
-
 
 export default marked

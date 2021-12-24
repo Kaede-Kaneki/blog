@@ -1,6 +1,5 @@
 <template>
     <div class="blog">
-        <div v-if="$route.path!=='/blog'" @click="$router.replace('/blog')" style="cursor: pointer">返回</div>
         <div class="blog-content" v-if="$route.path==='/blog'">
             <div class="blog-item" v-for="item in articleList" :key="item.id">
                 <h3 class="blog-item-title" @click="handlePush(item)">{{ item.title }}</h3>
@@ -55,6 +54,7 @@ export default {
         async reqArticle() {
             const data = await this.$api.reqArticle()
             Object.keys(data).forEach(k => {
+                console.log(marked(data[k].content))
                 data[k].desc = marked(data[k].content).replace(/<[^>]+>|&[^>]+;/g, "").trim()
             })
             this.articleList = data

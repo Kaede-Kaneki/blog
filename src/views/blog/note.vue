@@ -1,9 +1,10 @@
 <template>
     <div class="note">
+        <div v-if="$route.path!=='/blog'" @click="$router.replace('/blog')" class="bar">返回</div>
         <div class="note-content markdown markdown-body" v-highlight v-html="item.content"></div>
-        <div class="note-menu" ref="menu">
-            <a v-if="title">目录</a>
-            <a href="javascript:" v-for="item in title" :key="item.index" v-html="item"></a>
+        <div class="note-menu" ref="menu" >
+            <h1 class="title">目录</h1>
+            <a href="javascript:" class="list" v-for="item in title" :key="item.index" v-html="item"></a>
         </div>
     </div>
 </template>
@@ -30,8 +31,12 @@ export default {
             this.regTest()
         },
         regTest(){
-            let reg=/^(<h[\d]\s\S*)(<\/h[\d]>)$/gmi
+            let reg=/<h[2-6][^>]*>(.*?)<\/h\d>/g
+            // let reg=/<h\d[^>]*>/g
             this.title=this.item.content.match(reg)
+            // this.title=this.title.map(k=>{
+            //     return k.match(/(<h\d\sid=")|([^">])+/g)[1]
+            // })
         }
     },
 }
@@ -41,30 +46,40 @@ export default {
 @import 'src/assets/scss/define';
 @import "src/assets/scss/media-screen";
 
-.note {
+.bar{
     display: flex;
-    width: 100%;
-    &-content, .markdown {
-        display: flex;
-        flex-direction: column;
-        flex: 4;
-        padding: j(20);
-        border-radius: j(20);
-        background-color: #fff;
+    flex: 1;
+    width: j(100);
+    cursor: pointer;
+    background-color: pink;
+}
+.list{
+    color: #333;
+    /deep/ h2{
+        font-weight: normal;
     }
-
-    &-menu {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        margin-left: j(15);
-        min-width: j(150);
-        padding: j(10) j(15);
-        border-radius: j(20);
-        background-color: #fff;
-        a {
-            padding: j(3) j(10);
-        }
+    /deep/ h3{
+        font-weight: normal;
+        padding-left: j(15);
     }
+    /deep/ h4{
+        font-weight: normal;
+        padding-left: j(20);
+    }
+    /deep/ h5{
+        font-weight: normal;
+        padding-left: j(25);
+    }
+    /deep/ h6{
+        font-weight: normal;
+        padding-left: j(30);
+    }
+    &:hover{
+        text-decoration-line: underline;
+    }
+}
+.title{
+    padding: j(3) j(10);
+    font-size: 18px;
 }
 </style>
