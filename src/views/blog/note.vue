@@ -2,12 +2,8 @@
     <div class="note">
         <div class="note-content markdown markdown-body" v-highlight v-html="item.content"></div>
         <div class="note-menu" ref="menu">
-            <a href="javascript:"
-               v-for="item in 10"
-               :key="item.id"
-            >
-                {{ item }}
-            </a>
+            <a>目录</a>
+            <a href="javascript:" v-for="item in title" :key="item.index" v-html="item"></a>
         </div>
     </div>
 </template>
@@ -18,6 +14,7 @@ export default {
     data() {
         return {
             item: '',
+            title:''
         }
     },
     created() {
@@ -30,7 +27,12 @@ export default {
         },
         updateStorage(){
             this.item=JSON.parse(sessionStorage.getItem("article"))
+            this.regTest()
         },
+        regTest(){
+            let reg=/^(<h[\d]\s\S*)(<\/h[\d]>)$/gmi
+            this.title=this.item.content.match(reg)
+        }
     },
 }
 </script>
