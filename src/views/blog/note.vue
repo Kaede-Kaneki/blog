@@ -11,7 +11,7 @@
         </div>
         <div class="note-menu" ref="menu" >
             <h1 class="title">目录</h1>
-            <a href="javascript:" class="list" v-for="item in title" :key="item.index" v-html="item"></a>
+            <div class="list" v-html="title"></div>
         </div>
     </div>
 </template>
@@ -40,9 +40,16 @@ export default {
         },
         regTest(){
             let reg=/<h[2-6][^>]*>(.*?)<\/h[2-6]>/g
-            this.title=commonObj.regFilter(this.item.content,reg)
-            this.item.title=commonObj.regFilter(this.item.content,/<h1[^>]*>(.*?)<\/h1>/g)[0]
+            this.title=commonObj.regMatch(this.item.content,reg)
+            let res=''
+            Object.keys(this.title).forEach(k => {
+                res = res.concat(this.title[k])
+            })
+            this.title=res
+            this.item.title=commonObj.regMatch(this.item.content,/<h1[^>]*>(.*?)<\/h1>/g)[0]
             this.item.content=this.item.content.replace(/<h1[^>]*>(.*?)<\/h1>/g," ")
+
+
         },
         formatTimeToStr(date, fmt) {
             return commonObj.formatTimeToStr(new Date(date), fmt)

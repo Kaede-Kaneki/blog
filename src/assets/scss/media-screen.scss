@@ -569,6 +569,10 @@
             background-color: #fff;
             a {
                 padding: j(3) j(10);
+                color: #333;
+                &:hover{
+                    text-decoration: underline;
+                }
             }
         }
     }
