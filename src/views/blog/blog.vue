@@ -56,7 +56,7 @@ export default {
             let text=''
             Object.keys(data).forEach(k => {
                 let desc=''
-                text = marked(data[k].content).match(/<p>(.*)?<\/p>/g)
+                text = marked(data[k].content).match(/<p\b[^<>]*>.*[^<>].*<\/p>/g)
                 text && Object.keys(text).forEach(s=>{
                             desc=desc.concat(text[s]).replace(/<[^>]+>|&[^>]+;/g,"")
                         })
@@ -73,7 +73,7 @@ export default {
             let text=''
             Object.keys(data).forEach(k => {
                 let desc=''
-                text = marked(data[k].content).match(/<p>(.*)?<\/p>/g)
+                text = marked(data[k].content).match(/<p\b[^<>]*>.*[^<>].*<\/p>/g)
                 text && Object.keys(text).forEach(s=>{
                     desc=desc.concat(text[s]).replace(/<[^>]+>|&[^>]+;/g,"")
                 })
