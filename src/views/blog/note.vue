@@ -39,10 +39,10 @@ export default {
             this.regTest()
         },
         regTest(){
+            let res=''
             let reg=/<h[2-6][^>]*>(.*?)<\/h[2-6]>/g
             this.title=commonObj.regMatch(this.item.content,reg)
-            let res=''
-            Object.keys(this.title).forEach(k => {
+            this.title && Object.keys(this.title).forEach(k => {
                 res = res.concat(this.title[k])
             })
             this.title=res
@@ -64,31 +64,38 @@ export default {
 
 
 .list{
+    height: j(240);
+    overflow-y: auto;
     color: #333;
-    /deep/ h2{
+    /deep/ h2,/deep/ h3,/deep/ h4,/deep/ h5,/deep/ h6{
+        padding: j(2) 0 j(2) 0;
         font-weight: normal;
+        cursor: pointer;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        &:hover{
+            text-decoration: underline;
+        }
     }
+    /deep/ h2{}
     /deep/ h3{
-        font-weight: normal;
-        padding-left: j(15);
+        padding-left: j(5);
     }
     /deep/ h4{
-        font-weight: normal;
-        padding-left: j(20);
+        padding-left: j(15);
     }
     /deep/ h5{
-        font-weight: normal;
         padding-left: j(25);
     }
     /deep/ h6{
-        font-weight: normal;
-        padding-left: j(30);
-    }
-    &:hover{
-        text-decoration-line: underline;
+        padding-left: j(35);
     }
 }
 .title{
+    padding-bottom: j(5);
     font-size: 18px;
 }
 </style>
