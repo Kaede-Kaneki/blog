@@ -53,19 +53,31 @@ export default {
         },
         async reqArticle() {
             const data = await this.$api.reqArticle()
+            let text=''
             Object.keys(data).forEach(k => {
-                data[k].desc = marked(data[k].content).replace(/<[^>]+>|&[^>]+;/g, "").trim()
+                let desc=''
+                text = marked(data[k].content).match(/<p>(.*)?<\/p>/g)
+                text && Object.keys(text).forEach(s=>{
+                            desc=desc.concat(text[s]).replace(/<[^>]+>|&[^>]+;/g,"")
+                        })
+                data[k].desc=desc
+                //todo 这里暂时注释 因为本次数据库中的文章 有的没有给定标题，待修改
                 // data[k].title=commonObj.regMatch(marked(data[k].content),/<h1[^>]*>(.*?)<\/h1>/g)
                 // console.log(data[k].title[0])
             })
-
             this.articleList = data
         },
 
         async handleMenuClick(item) {
             const data = await this.$api.reqArticle({id: item.id})
+            let text=''
             Object.keys(data).forEach(k => {
-                data[k].desc = marked(data[k].content).replace(/<[^>]+>|&[^>]+;/g, "").trim()
+                let desc=''
+                text = marked(data[k].content).match(/<p>(.*)?<\/p>/g)
+                text && Object.keys(text).forEach(s=>{
+                    desc=desc.concat(text[s]).replace(/<[^>]+>|&[^>]+;/g,"")
+                })
+                data[k].desc=desc
             })
             this.articleList = data
         },

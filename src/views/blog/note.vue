@@ -48,8 +48,6 @@ export default {
             this.title=res
             this.item.title=commonObj.regMatch(this.item.content,/<h1[^>]*>(.*?)<\/h1>/g)[0]
             this.item.content=this.item.content.replace(/<h1[^>]*>(.*?)<\/h1>/g," ")
-
-
         },
         formatTimeToStr(date, fmt) {
             return commonObj.formatTimeToStr(new Date(date), fmt)
