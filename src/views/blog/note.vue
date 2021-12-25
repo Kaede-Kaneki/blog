@@ -2,9 +2,11 @@
     <div class="note">
         <div v-if="$route.path!=='/blog'" @click="$router.replace('/blog')" class="note-bar">返回</div>
         <div class="note-content">
-            <h1>{{item.title}}</h1>
-            <span>{{item.category_name}}</span>
-            <span>{{formatTimeToStr(item.create_time, 'yyyy-MM-dd hh:mm') }}</span>
+            <div class="head">
+                <h1 class="head-title" v-html="item.title"></h1>
+                <span class="head-tag">{{item.category_name}}</span>
+                <span class="head-date">{{formatTimeToStr(item.create_time, 'yyyy-MM-dd hh:mm') }}</span>
+            </div>
             <div class="markdown-body" v-highlight v-html="item.content"></div>
         </div>
         <div class="note-menu" ref="menu" >
@@ -37,12 +39,10 @@ export default {
             this.regTest()
         },
         regTest(){
-            let reg=/<h[2-6][^>]*>(.*?)<\/h\d>/g
-            // let reg=/<h\d[^>]*>/g
-            this.title=this.item.content.match(reg)
-            // this.title=this.title.map(k=>{
-            //     return k.match(/(<h\d\sid=")|([^">])+/g)[1]
-            // })
+            let reg=/<h[2-6][^>]*>(.*?)<\/h[2-6]>/g
+            this.title=commonObj.regFilter(this.item.content,reg)
+            this.item.title=commonObj.regFilter(this.item.content,/<h1[^>]*>(.*?)<\/h1>/g)[0]
+            this.item.content=this.item.content.replace(/<h1[^>]*>(.*?)<\/h1>/g," ")
         },
         formatTimeToStr(date, fmt) {
             return commonObj.formatTimeToStr(new Date(date), fmt)

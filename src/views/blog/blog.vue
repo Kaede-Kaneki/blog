@@ -55,7 +55,9 @@ export default {
             const data = await this.$api.reqArticle()
             Object.keys(data).forEach(k => {
                 data[k].desc = marked(data[k].content).replace(/<[^>]+>|&[^>]+;/g, "").trim()
+                // console.log(marked(data[k].content).match(/<h1[^>]*>(.*?)<\/h1>/g))
             })
+
             this.articleList = data
         },
 

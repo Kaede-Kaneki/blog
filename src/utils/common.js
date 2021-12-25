@@ -21,4 +21,10 @@ export const commonObj={
     padLeftZero(str) {
         return ('00' + str).substr(str.length);
     },
+    regFilter(content,reg){
+        if(typeof content!=="string") return false
+        else {
+            return content.match(reg)
+        }
+    }
 }
