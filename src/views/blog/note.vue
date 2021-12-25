@@ -64,11 +64,12 @@ export default {
 
 
 .list{
+
     height: j(240);
     overflow-y: auto;
     color: #333;
     /deep/ h2,/deep/ h3,/deep/ h4,/deep/ h5,/deep/ h6{
-        padding: j(2) 0 j(2) 0;
+        padding: j(4) 0 j(0) 0;
         font-weight: normal;
         cursor: pointer;
         display: -webkit-box;
@@ -93,6 +94,9 @@ export default {
     /deep/ h6{
         padding-left: j(35);
     }
+}
+.list::-webkit-scrollbar{
+    width: 0;
 }
 .title{
     padding-bottom: j(5);
