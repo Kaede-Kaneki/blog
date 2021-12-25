@@ -234,6 +234,7 @@
     }
     .main-wrap {
         padding: 0 j(60);
+        overflow-y: unset;
     }
     .blog {
         padding: j(30) j(60);
@@ -249,15 +250,66 @@
         }
 
         &-menu {
+            position: sticky;
+            top: 50px;
             display: flex;
             flex-direction: column;
             flex: 1;
             margin-left: j(15);
             min-width: j(150);
+            height: fit-content;
+            min-height: j(250);
             padding: j(10) j(15);
             border-radius: j(20);
             background-color: #fff;
 
+            a {
+                padding: j(3) j(10);
+            }
+        }
+    }
+
+    .note {
+        display: flex;
+        width: 100%;
+        &-bar{
+            position: sticky;
+            top: 50px;
+            display: flex;
+            margin-right: j(15);
+            height: j(250);
+            width: j(100);
+            width: 10%;
+            border-radius: j(20);
+            padding: j(10) j(15);
+            background-color: pink;
+            cursor: pointer;
+        }
+        &-content,{
+            display: flex;
+            flex-direction: column;
+            flex: 4;
+            padding: j(20);
+            border-radius: j(20);
+            background-color: #fff;
+            overflow-x: auto;
+        }
+
+        &-menu {
+            position: sticky;
+            top: 50px;
+            //display: flex;
+            //flex-direction: column;
+            //flex: 1;
+            margin-left: j(15);
+            height: fit-content;
+            min-height: j(250);
+            max-width: j(150);
+            width: 20%;
+            padding: j(10) j(15);
+            border-radius: j(20);
+            word-break: break-word;
+            background-color: #fff;
             a {
                 padding: j(3) j(10);
             }
@@ -319,6 +371,7 @@
     }
     .main-wrap {
         padding: 0 j(60);
+        overflow-y: unset;
     }
     .blog {
         padding: j(30) j(60);
@@ -333,15 +386,19 @@
         }
 
         &-menu {
+            position: sticky;
+            top: 50px;
             display: flex;
             flex-direction: column;
             flex: 1;
+            width: 20%;
             margin-left: j(15);
             min-width: j(150);
+            height: fit-content;
+            min-height: j(250);
             padding: j(10) j(15);
             border-radius: j(20);
             background-color: #fff;
-
             a {
                 padding: j(3) j(10);
             }
@@ -351,23 +408,40 @@
     .note {
         display: flex;
         width: 100%;
-
-        &-content, .markdown {
+        &-bar{
+            position: sticky;
+            top: 50px;
+            display: flex;
+            margin-right: j(15);
+            height: j(250);
+            width: j(100);
+            width: 10%;
+            border-radius: j(20);
+            padding: j(10) j(15);
+            background-color: pink;
+            cursor: pointer;
+        }
+        &-content,{
             display: flex;
             flex-direction: column;
             flex: 4;
             padding: j(20);
             border-radius: j(20);
             background-color: #fff;
+            overflow-x: auto;
         }
 
         &-menu {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
+            position: sticky;
+            top: 50px;
+            //display: flex;
+            //flex-direction: column;
+            //flex: 1;
             margin-left: j(15);
-            //height: fit-content;
-            min-width: j(150);
+            height: fit-content;
+            min-height: j(250);
+            max-width: j(150);
+            width: 20%;
             padding: j(10) j(15);
             border-radius: j(20);
             word-break: break-word;

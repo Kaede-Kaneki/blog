@@ -6,8 +6,7 @@ import axios from "./utils/axios";
 import api from "./plugins/api";
 import Highlight from "./utils/highLight";
 import 'src/assets/iconfont/iconfont.scss'
-import 'github-markdown-css'
-
+import 'github-markdown-css/github-markdown-light.css'
 
 Vue.config.productionTip = false
 

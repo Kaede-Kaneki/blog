@@ -1,7 +1,12 @@
 <template>
     <div class="note">
-        <div v-if="$route.path!=='/blog'" @click="$router.replace('/blog')" class="bar">返回</div>
-        <div class="note-content markdown markdown-body" v-highlight v-html="item.content"></div>
+        <div v-if="$route.path!=='/blog'" @click="$router.replace('/blog')" class="note-bar">返回</div>
+        <div class="note-content">
+            <h1>{{item.title}}</h1>
+            <span>{{item.category_name}}</span>
+            <span>{{formatTimeToStr(item.create_time, 'yyyy-MM-dd hh:mm') }}</span>
+            <div class="markdown-body" v-highlight v-html="item.content"></div>
+        </div>
         <div class="note-menu" ref="menu" >
             <h1 class="title">目录</h1>
             <a href="javascript:" class="list" v-for="item in title" :key="item.index" v-html="item"></a>
@@ -10,6 +15,7 @@
 </template>
 
 <script>
+import {commonObj} from "../../utils/common";
 export default {
     name: "note",
     data() {
@@ -37,7 +43,10 @@ export default {
             // this.title=this.title.map(k=>{
             //     return k.match(/(<h\d\sid=")|([^">])+/g)[1]
             // })
-        }
+        },
+        formatTimeToStr(date, fmt) {
+            return commonObj.formatTimeToStr(new Date(date), fmt)
+        },
     },
 }
 </script>
@@ -46,13 +55,7 @@ export default {
 @import 'src/assets/scss/define';
 @import "src/assets/scss/media-screen";
 
-.bar{
-    display: flex;
-    flex: 1;
-    width: j(100);
-    cursor: pointer;
-    background-color: pink;
-}
+
 .list{
     color: #333;
     /deep/ h2{
@@ -79,7 +82,6 @@ export default {
     }
 }
 .title{
-    padding: j(3) j(10);
     font-size: 18px;
 }
 </style>

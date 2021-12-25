@@ -2,6 +2,55 @@
 import Hljs from 'highlight.js';
 import 'highlight.js/styles/github.css'; // 代码高亮风格
 
+// 定义vue代码块高亮函数
+function hljsDefineVue(hljs) {
+    return {
+        subLanguage: "xml",
+        contains: [
+            hljs.COMMENT("<!--", "-->", {
+                relevance: 10,
+            }),
+            {
+                begin: /^(\s*)(<script>)/gm,
+                end: /^(\s*)(<\/script>)/gm,
+                subLanguage: "javascript",
+                excludeBegin: true,
+                excludeEnd: true,
+            },
+            {
+                begin: /^(?:\s*)(?:<script\s+lang=(["'])ts\1>)/gm,
+                end: /^(\s*)(<\/script>)/gm,
+                subLanguage: "typescript",
+                excludeBegin: true,
+                excludeEnd: true,
+            },
+            {
+                begin: /^(\s*)(<style(\s+scoped)?>)/gm,
+                end: /^(\s*)(<\/style>)/gm,
+                subLanguage: "css",
+                excludeBegin: true,
+                excludeEnd: true,
+            },
+            {
+                begin: /^(?:\s*)(?:<style(?:\s+scoped)?\s+lang=(["'])(?:s[ca]ss)\1(?:\s+scoped)?>)/gm,
+                end: /^(\s*)(<\/style>)/gm,
+                subLanguage: "scss",
+                excludeBegin: true,
+                excludeEnd: true,
+            },
+            {
+                begin: /^(?:\s*)(?:<style(?:\s+scoped)?\s+lang=(["'])stylus\1(?:\s+scoped)?>)/gm,
+                end: /^(\s*)(<\/style>)/gm,
+                subLanguage: "stylus",
+                excludeBegin: true,
+                excludeEnd: true,
+            },
+        ],
+    };
+}
+
+Hljs.registerLanguage('vue',hljsDefineVue)
+
 let Highlight = {};
 // 自定义插件
 Highlight.install = function (Vue) {
@@ -11,14 +60,14 @@ Highlight.install = function (Vue) {
         inserted: function(el) {
             let blocks = el.querySelectorAll('pre code');
             for (let i = 0; i < blocks.length; i++) {
-                Hljs.highlightBlock(blocks[i]);
+                Hljs.highlightElement(blocks[i]);
             }
         },
         // 指令所在组件的 VNode 及其子 VNode 全部更新后调用
         componentUpdated: function(el) {
             let blocks = el.querySelectorAll('pre code');
             for (let i = 0; i < blocks.length; i++) {
-                Hljs.highlightBlock(blocks[i]);
+                Hljs.highlightElement(blocks[i]);
             }
         }
     })

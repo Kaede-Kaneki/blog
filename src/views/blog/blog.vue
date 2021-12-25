@@ -26,7 +26,7 @@
 
 <script>
 import {commonObj} from "../../utils/common";
-import marked from "marked";
+import marked from '../../utils/marked'
 
 export default {
     name: "blog",
@@ -54,7 +54,6 @@ export default {
         async reqArticle() {
             const data = await this.$api.reqArticle()
             Object.keys(data).forEach(k => {
-                console.log(marked(data[k].content))
                 data[k].desc = marked(data[k].content).replace(/<[^>]+>|&[^>]+;/g, "").trim()
             })
             this.articleList = data

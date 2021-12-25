@@ -1,7 +1,13 @@
 import marked from "marked";
 
-marked.setOptions({
-        renderer: new marked.Renderer(),
+const renderer = new marked.Renderer();
+
+renderer.link=(href, title, text )=>{
+    return ` <a href="${href}" target="_blank" title="${title}">${text}</a>`;
+}
+
+marked.use({
+        renderer: renderer,
         pedantic: false,
         gfm: true,
         tables: true,
@@ -9,7 +15,7 @@ marked.setOptions({
         sanitize: false,
         smartLists: true,
         smartypants: false,
-        xhtml: false
+        xhtml: false,
     }
 )
 
