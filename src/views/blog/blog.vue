@@ -20,7 +20,7 @@
             </a>
             <p v-if="menuList.length === 0">{{ '暂无数据' }}</p>
         </div>
-        <back-top>top</back-top>
+        <back-top><i class="iconfont icon-fanhuidingbu"></i></back-top>
     </div>
 
 </template>

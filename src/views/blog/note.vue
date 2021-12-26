@@ -1,6 +1,10 @@
 <template>
     <div class="note">
-        <div v-if="$route.path!=='/blog'" @click="$router.replace('/blog')" class="note-bar">返回</div>
+        <div v-if="$route.path!=='/blog'"  class="note-bar">
+            <i class="note-bar-item iconfont icon-fanhui" @click="$router.replace('/blog')"></i>
+            <i class="note-bar-item iconfont icon-github-fill" @click="skip(GitHubUrl)"></i>
+            <i class="note-bar-item iconfont icon-bilibili" @click="skip(BiLi)"></i>
+        </div>
         <div class="note-content">
             <div class="head">
                 <h1 class="head-title" v-html="item.title"></h1>
@@ -23,7 +27,9 @@ export default {
     data() {
         return {
             item: '',
-            title:''
+            title:'',
+            GitHubUrl:"https://github.com/Kaede-Kaneki",
+            BiLi:"https://space.bilibili.com/13102775",
         }
     },
     created() {
@@ -52,6 +58,7 @@ export default {
         formatTimeToStr(date, fmt) {
             return commonObj.formatTimeToStr(new Date(date), fmt)
         },
+
     },
 }
 </script>
@@ -59,7 +66,16 @@ export default {
 <style scoped lang="scss">
 @import 'src/assets/scss/define';
 @import "src/assets/scss/media-screen";
-
+.note-bar{
+    &-item{
+        padding: j(5) 0;
+        font-size: 20px;
+        cursor: pointer;
+        &:hover{
+            color: skyblue;
+        }
+    }
+}
 
 .list{
     height: j(240);

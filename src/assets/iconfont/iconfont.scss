@@ -1,18 +1,45 @@
 @font-face {
-  font-family: "iconfont"; /* Project id 2969814 */
-  src: url('iconfont.woff2?t=1637996354667') format('woff2'),
-       url('iconfont.woff?t=1637996354667') format('woff');
+    font-family: "iconfont"; /* Project id 2969814 */
+    src: url('//at.alicdn.com/t/font_2969814_ibj54ob1fo.woff2?t=1640520253755') format('woff2'),
+    url('//at.alicdn.com/t/font_2969814_ibj54ob1fo.woff?t=1640520253755') format('woff');
 }
 
 .iconfont {
-  font-family: "iconfont" !important;
-  font-size: 16px;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-fanhui:before {
+    content: "\e67a";
+}
+
+.icon-github-fill:before {
+    content: "\e885";
+}
+
+.icon-QQ:before {
+    content: "\e667";
+}
+
+.icon-bilibili:before {
+    content: "\e600";
+}
+
+.icon-bilibili1:before {
+    content: "\e723";
+}
+
+.icon-rocket:before {
+    content: "\e6de";
+}
+
+.icon-fanhuidingbu:before {
+    content: "\e633";
 }
 
 .icon-caidan:before {
-  content: "\eaf1";
+    content: "\eaf1";
 }
-

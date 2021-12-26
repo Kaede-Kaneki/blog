@@ -7,13 +7,15 @@ import api from "./plugins/api";
 import Highlight from "./utils/highLight";
 import 'src/assets/iconfont/iconfont.scss'
 import 'github-markdown-css/github-markdown-light.css'
-
+// import {methods} from "./utils/vuePrototype";
+import './utils/vuePrototype'
 Vue.config.productionTip = false
 
 // ;(s=>s.keys().forEach(k=>s[k].default&&Vue.use(s[k].default)))(require.context('./utils',true,/\.js$/))
 
 Vue.use(api)
 Vue.use(Highlight)
+// Vue.mixin(methods)
 
 //使用跳转页面自定义的title
 router.beforeEach((to, from, next) => {

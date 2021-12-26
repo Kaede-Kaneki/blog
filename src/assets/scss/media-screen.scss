@@ -589,14 +589,15 @@
             position: sticky;
             top: 50px;
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: start;
             margin-right: j(15);
             height: j(250);
-            width: j(100);
-            width: 10%;
+            width: j(20);
             border-radius: j(20);
-            padding: j(10) j(15);
-            background-color: pink;
-            cursor: pointer;
+            padding: j(20) j(15);
+            background-color: #fff;
             z-index: 1;
         }
         &-content{

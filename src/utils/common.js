@@ -26,5 +26,6 @@ export const commonObj={
         else {
             return content.match(reg)
         }
-    }
+    },
+
 }
