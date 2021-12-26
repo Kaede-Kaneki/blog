@@ -62,7 +62,6 @@ export default {
 
 
 .list{
-
     height: j(240);
     overflow-y: auto;
     color: #333;
@@ -100,4 +99,5 @@ export default {
     padding-bottom: j(5);
     font-size: 18px;
 }
+
 </style>

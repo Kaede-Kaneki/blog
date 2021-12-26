@@ -495,7 +495,6 @@
     .header-wrap {
         height: j(36);
         padding: 0 j(60);
-
         a.router-link-active {
             &:after {
                 content: '';
@@ -555,6 +554,7 @@
             padding: j(20);
             border-radius: j(20);
             background-color: #fff;
+            z-index: 1;
         }
 
         &-menu {
@@ -571,6 +571,7 @@
             padding: j(10) j(15);
             border-radius: j(20);
             background-color: #fff;
+            z-index: 1;
             a {
                 padding: j(3) j(10);
                 color: #333;
@@ -596,6 +597,7 @@
             padding: j(10) j(15);
             background-color: pink;
             cursor: pointer;
+            z-index: 1;
         }
         &-content{
             display: flex;
@@ -605,6 +607,7 @@
             border-radius: j(20);
             background-color: #fff;
             overflow-x: auto;
+            z-index: 1;
         }
 
         &-menu {
@@ -622,6 +625,7 @@
             border-radius: j(20);
             word-break: break-word;
             background-color: #fff;
+            z-index: 1;
             a {
                 padding: j(3) j(10);
             }

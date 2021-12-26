@@ -20,6 +20,7 @@
             </a>
             <p v-if="menuList.length === 0">{{ '暂无数据' }}</p>
         </div>
+        <back-top>top</back-top>
     </div>
 
 </template>
@@ -27,10 +28,13 @@
 <script>
 import {commonObj} from "../../utils/common";
 import marked from '../../utils/marked'
+import BackTop from '../../components/B-Backtop/index'
 
 export default {
     name: "blog",
-    components: {},
+    components: {
+        BackTop
+    },
     data() {
         return {
             menuList: [],
@@ -95,7 +99,9 @@ export default {
 <style scoped lang="scss">
 @import 'src/assets/scss/define';
 @import "src/assets/scss/media-screen";
+.blog{
 
+}
 .blog-item {
     display: flex;
     flex-wrap: wrap;
