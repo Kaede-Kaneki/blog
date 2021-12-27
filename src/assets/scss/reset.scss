@@ -1,5 +1,5 @@
 @charset "utf-8";
-html{-webkit-font-smoothing:antialiased}
+html{-webkit-font-smoothing:antialiased;  box-sizing: border-box;}
 body,h1,h2,h3,h4,h5,h6,p,dl,dt,dd,ul,ol,li,form,button,input,textarea,th,td{
   margin:0;
   padding:0;

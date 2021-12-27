@@ -99,45 +99,5 @@ export default {
 <style scoped lang="scss">
 @import 'src/assets/scss/define';
 @import "src/assets/scss/media-screen";
-.blog{
 
-}
-//.blog-item {
-//    display: flex;
-//    flex-wrap: wrap;
-//    align-items: center;
-//    margin: j(10) 0;
-//    padding: j(5) j(10);
-//    box-sizing: border-box;
-//    background-color: $theme-color-bright;
-//    border-radius: j(5);
-//    transition: all .2s;
-//    cursor: pointer;
-//    &:hover{
-//        transform: scale(1.02)
-//    }
-//    &:first-child {
-//        margin-top: 0;
-//    }
-//    &-title {
-//        width: 100%;
-//        font-size: 20px;
-//    }
-//
-//    &-subtitle {
-//        color: #999;
-//        padding: j(2) j(10) j(2) 0;
-//    }
-//
-//    &-content {
-//        width: 100%;
-//        padding: j(2) 0;
-//        display: -webkit-box;
-//        overflow: hidden;
-//        text-overflow: ellipsis;
-//        -webkit-line-clamp: 2;
-//        -webkit-box-orient: vertical;
-//        color: #666;
-//    }
-//}
 </style>

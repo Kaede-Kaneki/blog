@@ -27,7 +27,6 @@
 
 
 //html {
-//  //box-sizing: border-box;
 //  scrollbar-width: thin;
 //}
 //

@@ -33,6 +33,7 @@ const state = {
         },
     ],
     poem:"",
+    articleList:[]
 }
 const mutations = {
     mutationsHomeImgList(state,index){
@@ -44,7 +45,10 @@ const mutations = {
     },
     mutationGetPoem(state,content){
         state.poem=content
-    }
+    },
+    mutationArticleList(state,list){
+        state.articleList=list
+    },
 }
 const actions = {
     actionsHomeImgList({commit},index=0){
@@ -52,6 +56,9 @@ const actions = {
     },
     actionGetPoem({commit},content){
         return commit('mutationGetPoem',content)
+    },
+    actionArticleList({commit},list){
+        return commit('mutationArticleList',list)
     }
 
 }
