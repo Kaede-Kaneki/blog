@@ -2,6 +2,7 @@ import marked from "marked";
 
 const renderer = new marked.Renderer();
 
+//重写 a 标签
 renderer.link=(href, title, text )=>{
     return ` <a href="${href}" target="_blank" title="${title}">${text}</a>`;
 }

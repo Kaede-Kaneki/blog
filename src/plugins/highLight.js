@@ -2,7 +2,7 @@
 import Hljs from 'highlight.js';
 import 'highlight.js/styles/github.css'; // 代码高亮风格
 
-// 定义vue代码块高亮函数
+// 定义Vue代码块高亮函数
 function hljsDefineVue(hljs) {
     return {
         subLanguage: "xml",
@@ -48,7 +48,7 @@ function hljsDefineVue(hljs) {
         ],
     };
 }
-
+// 注册Vue代码块高亮
 Hljs.registerLanguage('vue',hljsDefineVue)
 
 let Highlight = {};

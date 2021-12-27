@@ -1,13 +1,12 @@
 import curl from 'src/utils/axios'
 
-export const $api={
-    reqTest:(data)=>curl('users/getUserInfo?id=1',data),
-    reqMd:(data)=>curl('doc/md',data),
-    reqArticle:(data)=>curl(`doc/article`,data)
+export const $api = {
+    reqMd: (data) => curl('doc/md', data),
+    reqArticle: (data) => curl(`doc/article`, data)
 }
 
 export default {
-    install (Vue) {
+    install(Vue) {
         Vue.prototype.$api = $api
     }
 }
