@@ -1,8 +1,8 @@
 <template>
     <div class="blog">
         <div class="blog-content" v-if="$route.path==='/blog'">
-            <div class="blog-item" v-for="item in articleList" :key="item.id">
-                <h3 class="blog-item-title" @click="handlePush(item)">{{ item.title }}</h3>
+            <div class="blog-item" v-for="item in articleList" :key="item.id"  @click="handlePush(item)">
+                <h3 class="blog-item-title">{{ item.title }}</h3>
                 <span class="blog-item-subtitle">{{ item.category_name }}</span>
                 <span class="blog-item-subtitle">{{ formatTimeToStr(item.create_time, 'yyyy-MM-dd hh:mm') }}</span>
                 <p class="blog-item-content">{{ item.desc }}</p>
@@ -102,36 +102,42 @@ export default {
 .blog{
 
 }
-.blog-item {
-    display: flex;
-    flex-wrap: wrap;
-    padding-top: j(20);
-
-    &:first-child {
-        padding-top: 0;
-    }
-
-    &-title {
-        width: 100%;
-        font-size: 20px;
-        cursor: pointer;
-    }
-
-    &-subtitle {
-        @extend %c9;
-        padding-top: j(3);
-        padding-right: j(10);
-    }
-
-    &-content {
-        width: 100%;
-        padding-top: j(3);
-        display: -webkit-box;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        color: #666;
-    }
-}
+//.blog-item {
+//    display: flex;
+//    flex-wrap: wrap;
+//    align-items: center;
+//    margin: j(10) 0;
+//    padding: j(5) j(10);
+//    box-sizing: border-box;
+//    background-color: $theme-color-bright;
+//    border-radius: j(5);
+//    transition: all .2s;
+//    cursor: pointer;
+//    &:hover{
+//        transform: scale(1.02)
+//    }
+//    &:first-child {
+//        margin-top: 0;
+//    }
+//    &-title {
+//        width: 100%;
+//        font-size: 20px;
+//    }
+//
+//    &-subtitle {
+//        color: #999;
+//        padding: j(2) j(10) j(2) 0;
+//    }
+//
+//    &-content {
+//        width: 100%;
+//        padding: j(2) 0;
+//        display: -webkit-box;
+//        overflow: hidden;
+//        text-overflow: ellipsis;
+//        -webkit-line-clamp: 2;
+//        -webkit-box-orient: vertical;
+//        color: #666;
+//    }
+//}
 </style>

@@ -31,7 +31,8 @@ const state = {
             url:'https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
             show:false,
         },
-    ]
+    ],
+    poem:"",
 }
 const mutations = {
     mutationsHomeImgList(state,index){
@@ -40,12 +41,19 @@ const mutations = {
             arr[key].show=false
         }
         arr[index].show=true
+    },
+    mutationGetPoem(state,content){
+        state.poem=content
     }
 }
 const actions = {
     actionsHomeImgList({commit},index=0){
         return commit('mutationsHomeImgList',index)
+    },
+    actionGetPoem({commit},content){
+        return commit('mutationGetPoem',content)
     }
+
 }
 const modules = {}
 

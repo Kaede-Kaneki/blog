@@ -1,10 +1,21 @@
 <template>
-<div>article</div>
+    <div>article</div>
 </template>
 
 <script>
+
 export default {
-  name: "articles"
+    name: "articles",
+    data(){
+        return{
+
+        }
+    },
+    created() {
+    },
+    methods:{
+
+    }
 }
 </script>
 

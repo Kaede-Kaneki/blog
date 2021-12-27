@@ -2,7 +2,6 @@ import axios from "axios";
 // import {Toast} from "vant";
 
 const config = {
-    baseURL: "http://localhost:3000/",
     timeout: 5000, // Timeout
     withCredentials: false, // Check cross-site Access-Control
 };
@@ -21,8 +20,8 @@ _axios.interceptors.request.use(
         // 这里的config包含每次请求的内容
         config.timeout = 60 * 1000
         // console.log('request success =>', config)
-        const {baseURL, url, method, params} = config
-        console.log(`${baseURL + url} [${method}] 请求参数=>`, params)
+        const { url, method, params } = config
+        console.log(`${url} [${method}] 请求参数=>`, params)
         return config
     },
     error => {
@@ -62,11 +61,11 @@ _axios.interceptors.response.use(
     }
 )
 
-export default (url, data = {},) => {
+export default (url, data = {}, method,) => {
     return _axios({
         url,
-        params: data,
-        method: 'GET',
+        method,
+        [method === 'get' ? 'params' : 'data']: data,
     }).finally(() => {
         // toast && toast.clear()
     })

@@ -15,6 +15,7 @@ $base-font-size: 37.5px;
 // Color Palette
 $black: #000;
 $white: #fff;
+$theme-color-bright: #f3f4f5;
 
 @mixin tft($translate3d){
   -webkit-transform: $translate3d;
