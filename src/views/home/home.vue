@@ -2,7 +2,7 @@
     <div class="home">
         <div class="home-header">
             <h2 class="home-header-title">北野</h2>
-            <span class="home-header-info">{{ $store.state.poem }}</span>
+            <span class="home-header-info">{{ poem}}</span>
             <!--      <router-link class="home-header-btn" to="#" >Get Started</router-link>-->
         </div>
 <!--        <div class="home-content">-->
@@ -18,38 +18,34 @@
 
         <div class="home-footer">
         </div>
-
     </div>
 </template>
 
 <script>
+import HomeMixin from './home.mixin.js'
 export default {
     name: "home",
+    mixins:[HomeMixin],
     data() {
         return {
             homeImgList: this.$store.state.homeImgList || false,
             show: false,
-            poem: this.$store.state.poem || "",
         }
     },
     created() {
-        this.initPoetry()
+        this.actionToken()
+        this.actionGetPoem()
     },
     mounted() {
 
+    },
+
+    computed:{
     },
     methods: {
         handleClick(index) {
             this.$store.dispatch('actionsHomeImgList', index)
         },
-        async initPoetry() {
-            if(!this.$store.state.poem){
-                await require('jinrishici').load(res=>{
-                    this.$store.dispatch('actionGetPoem',res.data.content)
-                })
-            }
-
-        }
     }
 }
 </script>

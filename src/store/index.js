@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import dailyPoem from "./modules/dailyPoem";
+import blogData from "./modules/blogData";
 
 Vue.use(Vuex)
 
@@ -32,8 +34,6 @@ const state = {
             show:false,
         },
     ],
-    poem:"",
-    articleList:[]
 }
 const mutations = {
     mutationsHomeImgList(state,index){
@@ -43,30 +43,20 @@ const mutations = {
         }
         arr[index].show=true
     },
-    mutationGetPoem(state,content){
-        state.poem=content
-    },
-    mutationArticleList(state,list){
-        state.articleList=list
-    },
 }
 const actions = {
     actionsHomeImgList({commit},index=0){
         return commit('mutationsHomeImgList',index)
     },
-    actionGetPoem({commit},content){
-        return commit('mutationGetPoem',content)
-    },
-    actionArticleList({commit},list){
-        return commit('mutationArticleList',list)
-    }
 
 }
-const modules = {}
 
 export default new Vuex.Store({
     state,
     mutations,
     actions,
-    modules
+    modules:{
+        dailyPoem,
+        blogData
+    }
 })

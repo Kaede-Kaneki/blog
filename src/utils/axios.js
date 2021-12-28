@@ -1,4 +1,5 @@
 import axios from "axios";
+import {Local} from "./storage";
 // import {Toast} from "vant";
 
 const config = {
@@ -20,7 +21,11 @@ _axios.interceptors.request.use(
         // 这里的config包含每次请求的内容
         config.timeout = 60 * 1000
         // console.log('request success =>', config)
-        const { url, method, params } = config
+        const { url, method, params,headers } = config
+        if(url === '/poems/sentence') {
+            const token = Local.get("SET_JINRISHICI_TOKEN")
+            headers['X-User-Token']=token
+        }
         console.log(`${url} [${method}] 请求参数=>`, params)
         return config
     },
@@ -41,8 +46,9 @@ _axios.interceptors.response.use(
             setTimeout(() => {
                 console.log('response success => ', response)
                 const {data: respData} = response  //解构赋值 将response中data重命名为respData
-                const {data, success, msg} = respData //解构respData
+                const {data, success, msg,status} = respData //解构respData
                 if (success) return resolve(data)
+                if (status) return  resolve(data)
                 else reject(msg || '请求报错')
                 // else {
                 //     Toast.fail(msg || '请求报错'),
