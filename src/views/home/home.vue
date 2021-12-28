@@ -55,7 +55,6 @@ export default {
 @import "src/assets/scss/media-screen";
 
 .home {
-    //padding: 0 !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
     height: 100%;

@@ -88,6 +88,7 @@ export default {
     opacity: 0;
 }
 .back-top{
+    @extend %bfb20;
     position: fixed;
     right: j(70);
     bottom: j(40);
@@ -98,11 +99,11 @@ export default {
     height: j(25);
     border-radius: j(5);
     box-shadow: 0 0 6px rgba(0,0,0, .12);
-    background-color: #fff;
+    background-color: $transparent-white;
     z-index: 9999;
     cursor: pointer;
     &:hover {
-        background-color: #f3f4f5;
+        background-color: $transparent-white-hover;
     }
 }
 </style>

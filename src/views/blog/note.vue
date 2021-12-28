@@ -1,29 +1,39 @@
 <template>
     <div class="note">
-        <div v-if="$route.path!=='/blog'"  class="note-bar">
+        <b-card filter v-if="$route.path!=='/blog'"  class="note-bar">
             <i class="note-bar-item iconfont icon-fanhui" @click="$router.replace('/blog')"></i>
             <i class="note-bar-item iconfont icon-github-fill" @click="skip(GitHubUrl)"></i>
             <i class="note-bar-item iconfont icon-bilibili" @click="skip(BiLi)"></i>
-        </div>
-        <div class="note-content">
+        </b-card>
+        <b-card filter text class="note-content">
             <div class="head">
                 <h1 class="head-title" v-html="item.title"></h1>
                 <span class="head-tag">{{item.category_name}}</span>
                 <span class="head-date">{{formatTimeToStr(item.create_time, 'yyyy-MM-dd hh:mm') }}</span>
             </div>
-            <div class="markdown-body" v-highlight v-html="item.content"></div>
-        </div>
-        <div class="note-menu" ref="menu" >
+            <div  class="markdown-body" v-highlight v-html="item.content"></div>
+            <div class="foot">
+                <div>
+
+                </div>
+                <div>暂时没有评论</div>
+            </div>
+        </b-card>
+        <b-card filter class="note-menu" ref="menu" >
             <h1 class="title">目录</h1>
             <div class="list" v-html="title"></div>
-        </div>
+        </b-card>
     </div>
 </template>
 
 <script>
 import {commonObj} from "../../utils/common";
+import BCard from 'src/components/B-Card'
 export default {
     name: "note",
+    components:{
+      BCard
+    },
     data() {
         return {
             item: '',
@@ -66,14 +76,98 @@ export default {
 <style scoped lang="scss">
 @import 'src/assets/scss/define';
 @import "src/assets/scss/media-screen";
-.note-bar{
-    &-item{
-        padding: j(5) 0;
-        font-size: 20px;
-        cursor: pointer;
-        &:hover{
-            color: skyblue;
+
+.note {
+    display: flex;
+    width: 100%;
+
+    &-bar {
+        position: sticky;
+        top: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        margin-right: j(15);
+        height: j(250);
+        width: j(20);
+        border-radius: j(20);
+        padding: j(20) j(15);
+        animation-name: bounceInLeft;
+        animation-duration: 1s;
+        z-index: 1;
+        &-item{
+            padding: j(5) 0;
+            font-size: 20px;
+            cursor: pointer;
+            &:hover{
+                color: skyblue;
+            }
         }
+    }
+
+    &-content {
+        display: flex;
+        flex-direction: column;
+        flex: 4;
+        padding: j(20);
+        border-radius: j(20);
+        overflow-x: auto;
+        z-index: 1;
+        //animation-name: bounceInUp;
+        //animation-duration: 1s;
+    }
+
+    &-menu {
+        position: sticky;
+        top: 50px;
+        margin-left: j(15);
+        height: fit-content;
+        min-height: j(250);
+        max-width: j(150);
+        width: 20%;
+        padding: j(10) j(15);
+        border-radius: j(20);
+        word-break: break-word;
+        z-index: 1;
+        animation-name: bounceInRight;
+        animation-duration: 1s;
+        a {
+            padding: j(3) j(10);
+        }
+    }
+
+    .head {
+        padding-bottom: j(15);
+
+        &-title {
+            padding-bottom: j(5);
+            font-size: j(18);
+        }
+
+        &-tag {
+            font-size: 10px;
+            padding: j(2) j(5);
+            border-radius: j(3);
+            margin-right: j(5);
+            text-align: center;
+            color: #fff;
+            background-color: #bbb;
+        }
+
+        &-date {
+            @extend %tac;
+            @extend %c3;
+            font-size: 10px;
+            padding: j(2) j(3);
+            border-radius: j(3);
+            margin-right: j(5);
+        }
+    }
+
+    .title{
+        padding-bottom: j(5);
+        font-size: 18px;
     }
 }
 
@@ -94,7 +188,6 @@ export default {
             text-decoration: underline;
         }
     }
-    /deep/ h2{}
     /deep/ h3{
         padding-left: j(5);
     }
@@ -108,12 +201,12 @@ export default {
         padding-left: j(35);
     }
 }
-.list::-webkit-scrollbar{
-    width: 0;
-}
-.title{
-    padding-bottom: j(5);
-    font-size: 18px;
+//.list::-webkit-scrollbar{
+//    width: 0;
+//}
+
+.markdown-body{
+    background-color: transparent;
 }
 
 </style>

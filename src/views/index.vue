@@ -63,10 +63,13 @@ export default {
     @extend %l0;
     @extend %r0;
     @extend %pa;
+    @extend %gb;
     height: 46px;
+    background: inherit;
     z-index: 9999;
-    background-color: #fff;
-
+    a{
+        color: #ffffff;
+    }
     a.router-link-active {
         color: #52BDA9;
     }
@@ -77,8 +80,6 @@ export default {
     @extend %aic;
     @extend %c3;
     height: 100%;
-    background-color: #fff;
-
     &-logo {
         @extend %br50;
         width: j(20);
@@ -88,13 +89,9 @@ export default {
 }
 
 .navbar {
-    //&.active{
-    //  @include tft(translate3d(0, 0%,0));
-    //}
     &-icon {
         @extend %cp;
     }
-
     &-item {
         @extend %c3;
     }
@@ -102,7 +99,6 @@ export default {
 
 .main-wrap {
     @extend %df1;
-    //padding-top: 46px!important;
     margin-top: 46px;
     overflow-y: auto;
 }
@@ -115,7 +111,7 @@ export default {
     @extend %cfff;
     @extend %pr;
     height: 100px;
-    background-color: #333333ab;
+    background-color: $transparent-black;
     z-index: 0;
 }
 

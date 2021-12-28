@@ -15,7 +15,10 @@ $base-font-size: 37.5px;
 // Color Palette
 $black: #000;
 $white: #fff;
-$theme-color-bright: #f3f4f5;
+$theme-color-bright: rgba(243, 244, 245, 0.6);
+$transparent-black: #333333cc;
+$transparent-white: rgba(255, 255, 255, 0.25);
+$transparent-white-hover: rgba(255, 255, 255, 0.35);
 
 @mixin tft($translate3d){
   -webkit-transform: $translate3d;
@@ -32,7 +35,33 @@ $theme-color-bright: #f3f4f5;
   transition: $sty $time;
 }
 
+//hover scale
+%hs{
+    transition: all .2s;
+    cursor: pointer;
+    &:hover{
+        transform:perspective(0) translateZ(0) scale(1.02,1.02);
+    }
+}
 
+//高斯模糊
+%gb{
+    &:before{
+        content: "";
+        position:absolute;
+        top:0;
+        right:0;
+        bottom:0;
+        left:0;
+        backdrop-filter: blur(20px);
+        overflow: hidden;
+        z-index: -1;
+    }
+}
+
+%bfb20{
+    backdrop-filter: blur(20px);
+}
 
 %ps{
   position: sticky;

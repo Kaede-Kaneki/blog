@@ -1,11 +1,16 @@
 <template>
-    <div>article</div>
+    <div class="article">
+        <b-card filter text hover-scale>12356</b-card>
+    </div>
 </template>
 
 <script>
-
+import BCard from 'src/components/B-Card/index'
 export default {
     name: "articles",
+    components:{
+        BCard
+    },
     data(){
         return{
 
@@ -20,6 +25,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 </style>
