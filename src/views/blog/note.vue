@@ -80,7 +80,6 @@ export default {
 .note {
     display: flex;
     width: 100%;
-
     &-bar {
         position: sticky;
         top: 50px;
@@ -201,9 +200,9 @@ export default {
         padding-left: j(35);
     }
 }
-//.list::-webkit-scrollbar{
-//    width: 0;
-//}
+.list::-webkit-scrollbar{
+    width: 0;
+}
 
 .markdown-body{
     background-color: transparent;
