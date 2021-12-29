@@ -4,9 +4,10 @@ import router from './router'
 import store from './store'
 import axios from "./utils/axios";
 import 'src/assets/iconfont/iconfont.scss'
-import 'github-markdown-css/github-markdown-light.css'
+import 'github-markdown-css/github-markdown.css'
 import 'src/assets/scss/nprogress.reset.scss'
 import './utils/vuePrototype'
+import 'src/utils/element'
 Vue.config.productionTip = false
 
 ;(s=>s.keys().forEach(k=>(s(k).default)&&Vue.use(s(k).default)))(require.context('./plugins',true,/\.js$/))

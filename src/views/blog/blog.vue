@@ -92,6 +92,7 @@ export default {
             this.$router.push({path: `/blog/note`, query: {id: item.id, categoryId: item.category_id, item: item}})
         },
         formatTimeToStr(date, fmt) {
+            date = date.replace(/-/g,'/')
             return commonObj.formatTimeToStr(new Date(date), fmt)
         },
     }
