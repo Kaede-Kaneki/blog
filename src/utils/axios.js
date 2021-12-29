@@ -1,6 +1,24 @@
 import axios from "axios";
 import {Local} from "./storage";
-// import {Toast} from "vant";
+import NProgress from 'nprogress'
+
+//配置进度条参数
+NProgress.configure({ showSpinner: false, minimum: 0.2, easeing: 'swing', speed: 1000, trickleRate: 0.2 });
+
+//防止多次请求进度条重复加载
+let loadingNum = 0;
+function startLoading() {
+    if (loadingNum === 0) {
+        NProgress.start()
+    }
+    loadingNum++;
+}
+function endLoading() {
+    loadingNum--
+    if (loadingNum <= 0) {
+        NProgress.done()
+    }
+}
 
 const config = {
     timeout: 5000, // Timeout
@@ -18,6 +36,7 @@ const _axios = axios.create(config);
  */
 _axios.interceptors.request.use(
     config => {
+        startLoading()
         // 这里的config包含每次请求的内容
         config.timeout = 60 * 1000
         // console.log('request success =>', config)
@@ -43,6 +62,7 @@ _axios.interceptors.response.use(
     function (response) {
         // Do something with response data
         return new Promise((resolve, reject) => {
+            endLoading()
             setTimeout(() => {
                 console.log('response success => ', response)
                 const {data: respData} = response  //解构赋值 将response中data重命名为respData

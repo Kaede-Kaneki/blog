@@ -1,7 +1,7 @@
 <template>
     <div class="blog">
         <b-card  class="blog-content" v-if="$route.path==='/blog'">
-            <b-card hover-scale text class="blog-item" v-for="item in articleList" :key="item.id"  @click.native="handlePush(item)">
+            <b-card  text class="blog-item" v-for="item in articleList" :key="item.id"  @click.native="handlePush(item)">
                 <h3 class="blog-item-title">{{ item.title }}</h3>
                 <span class="blog-item-subtitle">{{ item.category_name }}</span>
                 <span class="blog-item-subtitle">{{ formatTimeToStr(item.create_time, 'yyyy-MM-dd hh:mm') }}</span>
@@ -109,6 +109,7 @@ export default {
         display: flex;
         flex-direction: column;
         flex: 4;
+        //min-height: j(600);
         overflow-y: hidden;
     }
 
@@ -130,7 +131,7 @@ export default {
         a {
             padding: j(0) j(10);
             margin: j(3);
-            color: #000000;
+            color: $black;
             transition: all .2s;
             box-sizing: border-box;
             transform:translate3d(0,0,0);
@@ -145,6 +146,8 @@ export default {
         @extend %fww;
         @extend %aic;
         @extend %bsb;
+        @extend %cp;
+        @extend %hty;
         margin: j(10) 0;
         padding: j(5) j(10);
         border-radius: j(5);
@@ -159,18 +162,14 @@ export default {
             font-size: 20px;
         }
         &-subtitle {
-            color: #999;
+            @extend %c6;
             padding: j(2) j(10) j(2) 0;
         }
         &-content {
+            @extend %dbb2;
             width: 100%;
             padding: j(1) 0;
-            display: -webkit-box;
-            overflow-y: hidden;
-            text-overflow: ellipsis;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            color: #000;
+            color: $black;
         }
     }
 }

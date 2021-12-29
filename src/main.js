@@ -5,6 +5,7 @@ import store from './store'
 import axios from "./utils/axios";
 import 'src/assets/iconfont/iconfont.scss'
 import 'github-markdown-css/github-markdown-light.css'
+import 'src/assets/scss/nprogress.reset.scss'
 import './utils/vuePrototype'
 Vue.config.productionTip = false
 
