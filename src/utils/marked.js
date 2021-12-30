@@ -7,7 +7,7 @@ renderer.link=(href, title, text )=>{
     return ` <a href="${href}" target="_blank" title="${title}">${text}</a>`;
 }
 
-marked.use({
+marked.setOptions({
         renderer: renderer,
         pedantic: false,
         gfm: true,

@@ -14,15 +14,24 @@
             <div class="markdown-body" v-highlight v-html="item.content"></div>
             <div class="foot">
                 <div class="user">
-                    <component v-for="item in options"
-                               :key="item.index"
-                               :is="item.is"
-                               :label="item.label"
-                               v-model.trim="item.value"
-                               :placeholder="item.placeholder"
-                               @blur="handleBlur(item)"
-                    ></component>
-<!--                    <b-input v-model="value" :placeholder="placeholder" @blur="handleBlur"></b-input>-->
+                    <b-image></b-image>
+                    <div class="user-desc">
+                        <div class="user-input">
+                            <component v-for="item in options"
+                                       :key="item.index"
+                                       :is="item.is"
+                                       :label="item.label"
+                                       :type="item.type"
+                                       :src="item.src"
+                                       :alt="item.alt"
+                                       v-model.trim="item.value"
+                                       :placeholder="item.placeholder"
+                                       :class="{'paddingRight':item.paddingRight}"
+                                       @blur="handleBlur(item)"
+                            ></component>
+                        </div>
+                        <b-textarea></b-textarea>
+                    </div>
                 </div>
                 <div class="comment">暂时没有评论</div>
             </div>
@@ -38,32 +47,41 @@
 import {commonObj} from "../../utils/common";
 import BCard from 'src/components/B-Card'
 import BInput from 'src/components/B-Input'
+import BImage from 'src/components/B-Image/index'
+import BTextarea from 'src/components/B-Textarea/index'
 
 export default {
     name: "note",
     components: {
         BCard,
-        BInput
+        BInput,
+        BImage,
+        BTextarea
     },
     data() {
         return {
-            item: '',
-            title: '',
+            item: "",
+            title: "",
             GitHubUrl: "https://github.com/Kaede-Kaneki",
             BiLi: "https://space.bilibili.com/13102775",
-            options:{
-                QQ:{
-                    value:'',
-                    placeholder:'请输入QQ号',
-                    is:'b-input',
-                    label:'昵称',
+            options: {
+
+                QQ: {
+                    value: "",
+                    placeholder: "请输入QQ号",
+                    is: "b-input",
+                    label: "昵称",
+                    type: "text",
+                    paddingRight:true
                 },
-                Email:{
-                    value:'',
-                    placeholder:'请输入邮箱',
-                    is:'b-input',
-                    label:'邮箱'
-                }
+                Email: {
+                    value: "",
+                    placeholder: "请输入邮箱",
+                    is: "b-input",
+                    label: "邮箱",
+                    type: "text",
+                    paddingRight:false
+                },
             },
 
         }
@@ -94,9 +112,11 @@ export default {
         formatTimeToStr(date, fmt) {
             return commonObj.formatTimeToStr(new Date(date), fmt)
         },
-        handleBlur(item){
-            if(!item.value) return false
-            else {console.log('blur =>',item.value)}
+        handleBlur(item) {
+            if (!item.value) return false
+            else {
+                console.log('blur =>', item.value)
+            }
         }
 
     },
@@ -202,6 +222,29 @@ export default {
         padding-bottom: j(5);
         font-size: 18px;
     }
+
+    .foot {
+    }
+
+    .user {
+        @extend %df;
+        @extend %df1;
+        //@extend %w100;
+        padding: j(10) 0;
+
+        &-desc {
+            //@extend %df;
+            @extend %df1;
+            padding-left: j(5);
+            //@extend %df;
+            //@extend %df1;
+            //@extend %fww;
+        }
+        &-input{
+            @extend %df;
+            @extend %fww;
+        }
+    }
 }
 
 .list {
@@ -249,4 +292,7 @@ export default {
     background-color: transparent;
 }
 
+.paddingRight{
+    padding-right: j(5);
+}
 </style>

@@ -35,7 +35,7 @@ export default {
     name: "blog",
     components: {
         BBackTop,
-        BCard
+        BCard,
     },
     data() {
         return {
@@ -59,7 +59,7 @@ export default {
         },
         async reqArticle() {
             const data = await this.$api.reqArticle()
-            let text=''
+            let text=""
             Object.keys(data).forEach(k => {
                 let desc=''
                 text = marked(data[k].content).match(/<p\b[^<>]*>.*[^<>].*<\/p>/g)
