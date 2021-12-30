@@ -17,7 +17,8 @@
                     <component v-for="item in options"
                                :key="item.index"
                                :is="item.is"
-                               v-model="item.value"
+                               :label="item.label"
+                               v-model.trim="item.value"
                                :placeholder="item.placeholder"
                                @blur="handleBlur(item)"
                     ></component>
@@ -54,12 +55,14 @@ export default {
                 QQ:{
                     value:'',
                     placeholder:'请输入QQ号',
-                    is:'b-input'
+                    is:'b-input',
+                    label:'昵称',
                 },
-                email:{
+                Email:{
                     value:'',
                     placeholder:'请输入邮箱',
-                    is:'b-input'
+                    is:'b-input',
+                    label:'邮箱'
                 }
             },
 
@@ -92,7 +95,6 @@ export default {
             return commonObj.formatTimeToStr(new Date(date), fmt)
         },
         handleBlur(item){
-            console.log(item.value)
             if(!item.value) return false
             else {console.log('blur =>',item.value)}
         }

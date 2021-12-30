@@ -1,7 +1,8 @@
 <template>
     <div>
-        <input :type="type" :placeholder="placeholder" :value="value" :disabled="disabled" @blur="handleBlur"  @input="handleInput"/>
-        <p>{{value}}</p>
+        <span>{{label}}{{':'}}</span>
+        <input class="b-input" :type="type" :placeholder="placeholder" :value="value" :disabled="disabled" @blur="handleBlur"  @input="handleInput"/>
+        <span>{{value}}</span>
     </div>
 </template>
 
@@ -20,6 +21,9 @@ export default {
         value:{
             default:""
         },
+        label:{
+            default:""
+        },
         disabled:{
             type:Boolean,
             default:false
@@ -33,14 +37,17 @@ export default {
             let value = e.target.value
             this.$emit('input',value)
         },
-        handleBlur(e){
-            let value = e.target.value
-            this.$emit('blur',value)
+        handleBlur(){
+            this.$emit('blur',this.value)
         },
     },
 }
 </script>
 
 <style scoped lang="scss">
-
+@import "src/assets/scss/define";
+.b-input{
+    @extend %bn;
+    //width: j(150);
+}
 </style>
