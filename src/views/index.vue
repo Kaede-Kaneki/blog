@@ -66,7 +66,7 @@ export default {
     @extend %gb;
     height: 46px;
     background: inherit;
-    z-index: 9999;
+    z-index: 99;
     a{
         color: #ffffff;
     }

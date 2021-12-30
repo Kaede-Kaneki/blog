@@ -31,7 +31,6 @@ export default {
     width: j(40);
     height: j(40);
     object-fit: cover;
-    background-color: pink;
     border-radius: j(10);
 }
 </style>

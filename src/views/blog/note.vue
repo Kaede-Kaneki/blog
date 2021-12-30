@@ -14,10 +14,10 @@
             <div class="markdown-body" v-highlight v-html="item.content"></div>
             <div class="foot">
                 <div class="user">
-                    <b-image></b-image>
+                    <b-image :src="objImage.Avatar.src" :alt="objImage.Avatar.alt"></b-image>
                     <div class="user-desc">
                         <div class="user-input">
-                            <component v-for="item in options"
+                            <component v-for="item in objInput"
                                        :key="item.index"
                                        :is="item.is"
                                        :label="item.label"
@@ -30,7 +30,7 @@
                                        @blur="handleBlur(item)"
                             ></component>
                         </div>
-                        <b-textarea></b-textarea>
+                        <b-textarea v-model="objTextarea.Textarea.value" :placeholder="objTextarea.Textarea.placeholder" @blur="handleBlur(objTextarea.Textarea)"></b-textarea>
                     </div>
                 </div>
                 <div class="comment">暂时没有评论</div>
@@ -64,8 +64,14 @@ export default {
             title: "",
             GitHubUrl: "https://github.com/Kaede-Kaneki",
             BiLi: "https://space.bilibili.com/13102775",
-            options: {
-
+            objImage:{
+                Avatar:{
+                    src: "",
+                    alt: "",
+                    is: "b-image",
+                }
+            },
+            objInput: {
                 QQ: {
                     value: "",
                     placeholder: "请输入QQ号",
@@ -83,7 +89,12 @@ export default {
                     paddingRight:false
                 },
             },
-
+            objTextarea:{
+                Textarea:{
+                    value:"",
+                    placeholder:"可以输入QQ号获取昵称和头像...",
+                }
+            }
         }
     },
     created() {
@@ -117,7 +128,7 @@ export default {
             else {
                 console.log('blur =>', item.value)
             }
-        }
+        },
 
     },
 }

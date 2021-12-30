@@ -1,6 +1,7 @@
 import axios from "axios";
 import {Local} from "./storage";
 import NProgress from 'nprogress'
+import {Notification} from "element-ui";
 
 //配置进度条参数
 NProgress.configure({ showSpinner: false, minimum: 0.2, easeing: 'swing', speed: 1000, trickleRate: 0.2 });
@@ -67,13 +68,14 @@ _axios.interceptors.response.use(
                 console.log('response success => ', response)
                 const {data: respData} = response  //解构赋值 将response中data重命名为respData
                 const {data, success, msg,status} = respData //解构respData
-                if (success) return resolve(data)
+                if (success) {
+                    return resolve(data)
+                }
                 if (status) return  resolve(data)
-                else reject(msg || '请求报错')
-                // else {
-                //     Toast.fail(msg || '请求报错'),
-                //         reject(msg || '请求报错')
-                // }
+                else {
+                    Notification.error(msg||'请求报错')
+                    reject(msg || '请求报错')
+                }
             }, 50)
         })
     },

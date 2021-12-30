@@ -59,7 +59,8 @@ export default {
     padding: j(2);
     border-top-left-radius: j(3);
     border-bottom-left-radius: j(3);
-    background-color: pink;
+    color: $transparent-black;
+    background-color: rgb(196, 196, 196);
 }
 .b-input{
     @extend %bn;
