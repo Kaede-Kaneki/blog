@@ -3,12 +3,11 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from "./utils/axios";
+import 'src/utils/vuePrototype'
+import 'src/utils/element.js'
 import 'src/assets/iconfont/iconfont.scss'
 import 'github-markdown-css/github-markdown.css'
 import 'src/assets/scss/nprogress.reset.scss'
-import './utils/vuePrototype'
-import 'src/utils/element.js'
-import 'element-ui/lib/theme-chalk/index.css'
 Vue.config.productionTip = false
 
 ;(s=>s.keys().forEach(k=>(s(k).default)&&Vue.use(s(k).default)))(require.context('./plugins',true,/\.js$/))
@@ -17,7 +16,6 @@ Vue.config.productionTip = false
 Vue.config.errorHandler = (err, vm, info) => {
     //msg 若为空，msg.null会报错
     const msg = err && typeof err === 'object' ? err.msg || err.errorMsg || err.message || JSON.stringify(err) : `${err}`
-    // Toast(msg)
     console.log("errorHandler =>",msg, info)
 }
 

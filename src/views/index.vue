@@ -67,9 +67,11 @@ export default {
     height: 46px;
     background: inherit;
     z-index: 99;
-    a{
+
+    a {
         color: #ffffff;
     }
+
     a.router-link-active {
         color: #52BDA9;
     }
@@ -80,6 +82,7 @@ export default {
     @extend %aic;
     @extend %c3;
     height: 100%;
+
     &-logo {
         @extend %br50;
         width: j(20);
@@ -92,6 +95,7 @@ export default {
     &-icon {
         @extend %cp;
     }
+
     &-item {
         @extend %c3;
     }
@@ -114,6 +118,5 @@ export default {
     background-color: $transparent-black;
     z-index: 0;
 }
-
 
 </style>

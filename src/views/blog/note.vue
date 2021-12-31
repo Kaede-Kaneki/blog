@@ -13,27 +13,12 @@
             </div>
             <div class="markdown-body" v-highlight v-html="item.content"></div>
             <div class="foot">
-                <div class="user">
-                    <b-image :src="objImage.Avatar.src" :alt="objImage.Avatar.alt"></b-image>
-                    <div class="user-desc">
-                        <div class="user-input">
-                            <component v-for="item in objInput"
-                                       :key="item.index"
-                                       :is="item.is"
-                                       :label="item.label"
-                                       :type="item.type"
-                                       :src="item.src"
-                                       :alt="item.alt"
-                                       v-model.trim="item.value"
-                                       :placeholder="item.placeholder"
-                                       :class="{'paddingRight':item.paddingRight}"
-                                       @blur="handleBlur(item)"
-                            ></component>
-                        </div>
-                        <b-textarea v-model="objTextarea.Textarea.value" :placeholder="objTextarea.Textarea.placeholder" @blur="handleBlur(objTextarea.Textarea)"></b-textarea>
-                    </div>
+                <b-comment :comment-from="commentFrom"></b-comment>
+                <div class="comment">
+                    <b-card filter text>
+                        暂时没有评论
+                    </b-card>
                 </div>
-                <div class="comment">暂时没有评论</div>
             </div>
         </b-card>
         <b-card filter class="note-menu" ref="menu">
@@ -45,57 +30,16 @@
 
 <script>
 import {commonObj} from "../../utils/common";
+import NoteMixin from './note.mixin'
 import BCard from 'src/components/B-Card'
-import BInput from 'src/components/B-Input'
-import BImage from 'src/components/B-Image/index'
-import BTextarea from 'src/components/B-Textarea/index'
+import BComment from 'src/components/B-Comment/index'
 
 export default {
     name: "note",
+    mixins:[NoteMixin],
     components: {
         BCard,
-        BInput,
-        BImage,
-        BTextarea
-    },
-    data() {
-        return {
-            item: "",
-            title: "",
-            GitHubUrl: "https://github.com/Kaede-Kaneki",
-            BiLi: "https://space.bilibili.com/13102775",
-            objImage:{
-                Avatar:{
-                    src: "",
-                    alt: "",
-                    is: "b-image",
-                }
-            },
-            objInput: {
-                QQ: {
-                    value: "",
-                    placeholder: "请输入QQ号",
-                    is: "b-input",
-                    label: "昵称",
-                    type: "text",
-                    paddingRight:true
-                },
-                Email: {
-                    value: "",
-                    placeholder: "请输入邮箱",
-                    is: "b-input",
-                    label: "邮箱",
-                    type: "text",
-                    paddingRight:false
-                },
-            },
-            objTextarea:{
-                Textarea:{
-                    value:"",
-                    placeholder:"可以输入QQ号获取昵称和头像...",
-                }
-            }
-        }
+        BComment
     },
     created() {
         this.setStorage(this.$route.query.item)
@@ -123,12 +67,6 @@ export default {
         formatTimeToStr(date, fmt) {
             return commonObj.formatTimeToStr(new Date(date), fmt)
         },
-        handleBlur(item) {
-            if (!item.value) return false
-            else {
-                console.log('blur =>', item.value)
-            }
-        },
 
     },
 }
@@ -141,7 +79,6 @@ export default {
 .note {
     display: flex;
     width: 100%;
-
     &-bar {
         position: sticky;
         top: 50px;
@@ -228,32 +165,29 @@ export default {
             margin-right: j(5);
         }
     }
-
+    .foot{
+        //background-color: pink;
+    }
     .title {
         padding-bottom: j(5);
         font-size: 18px;
     }
-
-    .foot {
-    }
-
     .user {
         @extend %df;
         @extend %df1;
-        //@extend %w100;
         padding: j(10) 0;
 
         &-desc {
-            //@extend %df;
             @extend %df1;
             padding-left: j(5);
-            //@extend %df;
-            //@extend %df1;
-            //@extend %fww;
         }
         &-input{
             @extend %df;
             @extend %fww;
+        }
+        &-btn{
+            @extend %df;
+            @extend %jce;
         }
     }
 }

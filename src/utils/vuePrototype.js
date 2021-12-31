@@ -5,6 +5,12 @@ Vue.mixin({
         skip(url) {
             window.open(url)
         },
+        regMatch(content,reg){
+            if(typeof content!=="string") return false
+            else {
+                return content.match(reg)
+            }
+        },
     },
 })
 

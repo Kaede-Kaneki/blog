@@ -34,15 +34,6 @@ module.exports = {
                     '^/poems':'' //路径重写
                 }
             },
-            '/tencent':{
-                target: 'http://r.qzone.qq.com/cgi-bin/user/cgi_personal_card?uin=',//后台接口域名
-                ws:false,       //如果要代理 websockets，配置这个参数
-                secure: false,  // 如果是https接口，需要配置这个参数
-                changeOrigin:true, //是否跨域
-                pathRewrite:{
-                    '^/tencent':'' //路径重写
-                }
-            },
         }
     },
     configureWebpack: {

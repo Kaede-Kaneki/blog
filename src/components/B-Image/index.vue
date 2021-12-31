@@ -8,7 +8,7 @@ export default {
     props: {
         src: {
             type: String,
-            default: ''
+            default: require("src/assets/image/Avatar.png")
         },
         alt:{
             type:String,
@@ -32,5 +32,6 @@ export default {
     height: j(40);
     object-fit: cover;
     border-radius: j(10);
+    background-color: $transparent-white-hover;
 }
 </style>

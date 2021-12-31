@@ -4,16 +4,18 @@ import NProgress from 'nprogress'
 import {Notification} from "element-ui";
 
 //配置进度条参数
-NProgress.configure({ showSpinner: false, minimum: 0.2, easeing: 'swing', speed: 1000, trickleRate: 0.2 });
+NProgress.configure({showSpinner: false, minimum: 0.2, easeing: 'swing', speed: 1000, trickleRate: 0.2});
 
 //防止多次请求进度条重复加载
 let loadingNum = 0;
+
 function startLoading() {
     if (loadingNum === 0) {
         NProgress.start()
     }
     loadingNum++;
 }
+
 function endLoading() {
     loadingNum--
     if (loadingNum <= 0) {
@@ -41,10 +43,10 @@ _axios.interceptors.request.use(
         // 这里的config包含每次请求的内容
         config.timeout = 60 * 1000
         // console.log('request success =>', config)
-        const { url, method, params,headers } = config
-        if(url === '/poems/sentence') {
+        const {url, method, params, headers} = config
+        if (url === '/poems/sentence') {
             const token = Local.get("SET_JINRISHICI_TOKEN")
-            headers['X-User-Token']=token
+            headers['X-User-Token'] = token
         }
         console.log(`${url} [${method}] 请求参数=>`, params)
         return config
@@ -67,13 +69,15 @@ _axios.interceptors.response.use(
             setTimeout(() => {
                 console.log('response success => ', response)
                 const {data: respData} = response  //解构赋值 将response中data重命名为respData
-                const {data, success, msg,status} = respData //解构respData
-                if (success) {
-                    return resolve(data)
+                const {data, success, msg, status} = respData //解构respData
+                if(/qq/g.test(respData))  {
+                    let qqData = JSON.parse(respData.match(/{.*}/g)[0])
+                    return resolve(qqData)
                 }
-                if (status) return  resolve(data)
+                if (success) return resolve(data)
+                if (status) return resolve(data)
                 else {
-                    Notification.error(msg||'请求报错')
+                    Notification.error(msg || '请求报错')
                     reject(msg || '请求报错')
                 }
             }, 50)
