@@ -11,6 +11,10 @@ Vue.mixin({
                 return content.match(reg)
             }
         },
+        contentDetection(content){
+            content=content.replace(/<[^<>]+?>/g,'')
+            return content
+        }
     },
 })
 

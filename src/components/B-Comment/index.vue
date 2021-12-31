@@ -48,12 +48,19 @@ export default {
         },
         handleClick(label){
             if(label==='预览') return false
-            console.log(this.commentFrom)
-            this.$notify({message:"111"})
+            const {objTextarea}=this.commentFrom
+            let value = objTextarea.value
+            value = this.contentDetection(value)
+            if(!value) {
+                this.$message.error("非法输入")
+                objTextarea.value=""
+            }
+            else this.$notify({message:value})
         },
         handleBlur(item) {
             const { objImage,objInput }=this.commentFrom
             const{ Email }=objInput
+            this.$notify.success(item.value)
             if (!item.value) return false
             else {
                 const reg=/^[0-9]*$/g
