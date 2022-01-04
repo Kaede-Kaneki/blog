@@ -27,9 +27,12 @@
             </div>
         </div>
         <div class="b-comment-desc" v-if="isComment">
-            <span>{{commentContent.user_name}}</span>
+            <div class="b-comment-user">
+                <span class="b-comment-username">{{commentContent.user_name}}</span>
+                <span>{{ formatDate(commentContent.update_time) }}</span>
+            </div>
             <b-card padding text>
-                <p style="word-break: break-all">{{ commentContent.user_comment }}</p>
+                <p class="b-comment-usercomment">{{ commentContent.user_comment }}</p>
             </b-card>
         </div>
     </div>
@@ -114,6 +117,20 @@ export default {
     &-btn {
         @extend %df;
         @extend %jce;
+    }
+
+    &-user{
+        margin-bottom: j(5);
+    }
+
+    &-username{
+        @extend %cp;
+        margin-right: j(5);
+    }
+
+    &-usercomment{
+        white-space: pre-wrap;
+        font-size: 16px;
     }
 }
 
