@@ -14,6 +14,10 @@ Vue.mixin({
         contentDetection(content){
             content=content.replace(/<[^<>]+?>/g,'')
             return content
+        },
+        regMail(mail){
+            const reg=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/g
+            return reg.test(mail)
         }
     },
 })

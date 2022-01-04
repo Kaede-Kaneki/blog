@@ -1,5 +1,5 @@
 <template>
-    <div class="b-card" :class="{'filter':filter,'text':text,'hover-scale':hoverScale}">
+    <div class="b-card" :class="{'filter':filter,'text':text,'hover-scale':hoverScale,'padding':padding}">
         <slot></slot>
     </div>
 </template>
@@ -20,6 +20,10 @@ export default {
             type:Boolean,
             default: false
         },
+        padding:{
+            type:Boolean,
+            default: false
+        }
     },
     data() {
         return {}
@@ -45,5 +49,9 @@ export default {
 }
 .hover-scale{
     @extend %hs
+}
+.padding{
+    border-radius: j(5);
+    padding: j(5) j(10)
 }
 </style>

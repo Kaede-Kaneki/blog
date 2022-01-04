@@ -5,6 +5,8 @@ const poems='/poems'
 export const $api = {
     reqMd: (data) => curl(`${baseURL}/doc/md`, data,"get"),
     reqArticle: (data) => curl(`${baseURL}/doc/article`, data,"get"),
+    reqGetComment:(data) =>curl(`${baseURL}/doc/getComment`,data,"get"),
+    reqSetComment:(data) => curl(`${baseURL}/doc/setComment`,data,"post"),
     reqPoemToken:(data)=>curl(`${poems}/token`,data,"get"),
     reqPoem:(data)=>curl(`${poems}/sentence`,data,"get"),
 }

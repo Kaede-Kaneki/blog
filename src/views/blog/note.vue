@@ -13,9 +13,10 @@
             </div>
             <div class="markdown-body" v-highlight v-html="item.content"></div>
             <div class="foot">
-                <b-comment :comment-from="commentFrom"></b-comment>
+                <b-comment :comment-from="commentFrom" :is-comment="false" @click="handleClick"></b-comment>
                 <div class="comment">
-                    <b-card filter text>
+                    <b-comment  v-for="item in commentArr" :key="item.comment_id" :comment-content="item" :is-comment="true"></b-comment>
+                    <b-card filter text v-if="!commentArr.length">
                         暂时没有评论
                     </b-card>
                 </div>
@@ -44,6 +45,7 @@ export default {
     created() {
         this.setStorage(this.$route.query.item)
         this.updateStorage()
+        this.getComment()
     },
     methods: {
         setStorage(item) {
@@ -67,6 +69,58 @@ export default {
         formatTimeToStr(date, fmt) {
             return commonObj.formatTimeToStr(new Date(date), fmt)
         },
+        async getComment(){
+            let {item} = this
+            const {id:articleId} = item
+            const data = await this.$api.reqGetComment({'articleId':articleId})
+            this.commentArr = data
+        },
+        // 表单验证
+         handleClick(label){
+            const { commentFrom } = this
+            const {objTextarea,objInput}=commentFrom
+            let value = objTextarea.value
+            if(label==='预览') return false
+            for(let k in objInput){
+                if(objInput[k].isRequire && !objInput[k].value){
+                    this.$message.warning({
+                        message:`${objInput[k].placeholder}`,
+                        duration:1500
+                    })
+                    return false
+                }
+                if (!this.regMail(objInput.Email.value)) {
+                    this.$message.warning("邮箱格式错误")
+                    return false
+                }
+            }
+            if(!value) {
+                this.$message.warning(`内容不能为空！`)
+                return false
+            }
+            else {
+                value = this.contentDetection(value)
+                if(value === ""){
+                    this.$message.error("非法输入")
+                    objTextarea.value=""
+                }
+                else{
+                    //todo 这里向后端发送留言
+                    const { id:articleId,category_id:categoryId } = this.item
+                    const { objImage:{src:userAvatar},objInput:{QQ:{value:userName},Email:{value:userEmail}},objTextarea:{value:userComment} } = commentFrom
+                    const form ={articleId,categoryId,userAvatar, userName, userEmail, userComment}
+                    this.setComment(form)
+                }
+            }
+        },
+        async setComment(form){
+            const data = await this.$api.reqSetComment(form)
+            if(!data) {
+                this.$message.success("评论成功")
+                this.commentArr = await this.getComment()
+                this.commentFrom.objTextarea.value=""
+            }
+        }
 
     },
 }

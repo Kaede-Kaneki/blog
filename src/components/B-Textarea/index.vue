@@ -61,7 +61,7 @@ export default {
         @extend %r0;
         @extend %b0;
         font-size: j(4);
-        padding: j(2);
+        padding: j(5);
     }
 }
 </style>
