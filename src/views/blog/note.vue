@@ -13,19 +13,21 @@
             </div>
             <div class="markdown-body" v-highlight v-html="item.content"></div>
             <div class="foot">
-                <b-comment :comment-from="commentForm" :is-comment="false" @click="handleClick(commentForm)"></b-comment>
+                <b-comment :comment-from="commentForm" :is-comment="false"
+                           @click="handleClick(commentForm)"></b-comment>
                 <div class="comment">
-                    <b-comment  v-for="item in commentArr" :key="item.comment_id" :comment-content="item" :is-comment="true" @click="handleReply(item.comment_id)">
+                    <b-comment v-for="item in commentArr" :key="item.comment_id" :comment-content="item"
+                               :is-comment="true" @click="handleReply(item.comment_id)">
                         <b-comment :key="item.comment_id"
                                    :comment-from="replyForm"
                                    :is-comment="false"
-                                   v-if="isReplyShow===item.comment_id"
+                                   v-show="isReplyShow===item.comment_id"
                                    @click="handleClick(replyForm)">
                         </b-comment>
                     </b-comment>
-                    <b-card filter text v-if="!commentArr.length">
-                        暂时没有评论
-                    </b-card>
+                    <!--                    <b-card filter text v-if="!commentArr.length">-->
+                    <!--                        暂时没有评论-->
+                    <!--                    </b-card>-->
                 </div>
             </div>
         </b-card>
@@ -44,7 +46,7 @@ import BComment from 'src/components/B-Comment/index'
 
 export default {
     name: "note",
-    mixins:[NoteMixin],
+    mixins: [NoteMixin],
     components: {
         BCard,
         BComment
@@ -76,21 +78,21 @@ export default {
         formatTimeToStr(date, fmt) {
             return commonObj.formatTimeToStr(new Date(date), fmt)
         },
-        async getComment(){
+        async getComment() {
             let {item} = this
-            const {id:articleId} = item
-            const data = await this.$api.reqGetComment({'articleId':articleId})
+            const {id: articleId} = item
+            const data = await this.$api.reqGetComment({'articleId': articleId})
             this.commentArr = data
         },
         // 表单验证
-         handleClick(commentForm){
-            const {objTextarea,objInput}=commentForm
+        handleClick(commentForm) {
+            const {objTextarea, objInput} = commentForm
             let value = objTextarea.value
-            for(let k in objInput){
-                if(objInput[k].isRequire && !objInput[k].value){
+            for (let k in objInput) {
+                if (objInput[k].isRequire && !objInput[k].value) {
                     this.$message.warning({
-                        message:`${objInput[k].placeholder}`,
-                        duration:1500
+                        message: `${objInput[k].placeholder}`,
+                        duration: 1500
                     })
                     return false
                 }
@@ -99,36 +101,38 @@ export default {
                     return false
                 }
             }
-            if(!value) {
+            if (!value) {
                 this.$message.warning(`内容不能为空！`)
                 return false
-            }
-            else {
+            } else {
                 value = this.contentDetection(value)
-                if(value === ""){
+                if (value === "") {
                     this.$message.error("非法输入")
-                    objTextarea.value=""
-                }
-                else{
+                    objTextarea.value = ""
+                } else {
                     //todo 这里向后端发送留言
-                    const { id:articleId,category_id:categoryId } = this.item
-                    const { objImage:{src:userAvatar},objInput:{QQ:{value:userName},Email:{value:userEmail}},objTextarea:{value:userComment} } = commentForm
-                    const form ={articleId,categoryId,userAvatar, userName, userEmail, userComment}
+                    const {id: articleId, category_id: categoryId} = this.item
+                    const {
+                        objImage: {src: userAvatar},
+                        objInput: {QQ: {value: userName}, Email: {value: userEmail}},
+                        objTextarea: {value: userComment}
+                    } = commentForm
+                    const form = {articleId, categoryId, userAvatar, userName, userEmail, userComment}
                     this.setComment(form)
                 }
             }
         },
-        async setComment(form){
+        async setComment(form) {
             const data = await this.$api.reqSetComment(form)
-            if(!data) {
+            if (!data) {
                 this.$message.success("评论成功")
                 this.commentArr = await this.getComment()
-                this.commentForm.objTextarea.value=""
+                this.commentForm.objTextarea.value = ""
             }
         },
-        handleReply(commentId){
-            console.log(commentId,this.isReplyShow )
-            this.isReplyShow === commentId ? this.isReplyShow = "":this.isReplyShow = commentId
+        handleReply(commentId) {
+            console.log(commentId, this.isReplyShow)
+            this.isReplyShow === commentId ? this.isReplyShow = "" : this.isReplyShow = commentId
         }
 
     },
@@ -142,6 +146,7 @@ export default {
 .note {
     display: flex;
     width: 100%;
+
     &-bar {
         position: sticky;
         top: 50px;
@@ -228,13 +233,16 @@ export default {
             margin-right: j(5);
         }
     }
-    .foot{
+
+    .foot {
         padding-top: j(15);
     }
+
     .title {
         padding-bottom: j(5);
         font-size: 18px;
     }
+
     .user {
         @extend %df;
         @extend %df1;
@@ -244,11 +252,13 @@ export default {
             @extend %df1;
             padding-left: j(5);
         }
-        &-input{
+
+        &-input {
             @extend %df;
             @extend %fww;
         }
-        &-btn{
+
+        &-btn {
             @extend %df;
             @extend %jce;
         }
@@ -300,7 +310,7 @@ export default {
     background-color: transparent;
 }
 
-.paddingRight{
+.paddingRight {
     padding-right: j(5);
 }
 </style>
