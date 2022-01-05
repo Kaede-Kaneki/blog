@@ -13,9 +13,16 @@
             </div>
             <div class="markdown-body" v-highlight v-html="item.content"></div>
             <div class="foot">
-                <b-comment :comment-from="commentFrom" :is-comment="false" @click="handleClick"></b-comment>
+                <b-comment :comment-from="commentForm" :is-comment="false" @click="handleClick(commentForm)"></b-comment>
                 <div class="comment">
-                    <b-comment  v-for="item in commentArr" :key="item.comment_id" :comment-content="item" :is-comment="true"></b-comment>
+                    <b-comment  v-for="item in commentArr" :key="item.comment_id" :comment-content="item" :is-comment="true" @click="handleReply(item.comment_id)">
+                        <b-comment :key="item.comment_id"
+                                   :comment-from="replyForm"
+                                   :is-comment="false"
+                                   v-if="isReplyShow===item.comment_id"
+                                   @click="handleClick(replyForm)">
+                        </b-comment>
+                    </b-comment>
                     <b-card filter text v-if="!commentArr.length">
                         暂时没有评论
                     </b-card>
@@ -64,7 +71,7 @@ export default {
             })
             this.title = res
             this.item.title = commonObj.regMatch(this.item.content, /<h1[^>]*>(.*?)<\/h1>/g)[0]
-            this.item.content = this.item.content.replace(/<h1[^>]*>(.*?)<\/h1>/g, " ")
+            this.item.content = this.item.content.replace(/<h1[^>]*>(.*?)<\/h1>/g, "")
         },
         formatTimeToStr(date, fmt) {
             return commonObj.formatTimeToStr(new Date(date), fmt)
@@ -76,11 +83,9 @@ export default {
             this.commentArr = data
         },
         // 表单验证
-         handleClick(label){
-            const { commentFrom } = this
-            const {objTextarea,objInput}=commentFrom
+         handleClick(commentForm){
+            const {objTextarea,objInput}=commentForm
             let value = objTextarea.value
-            if(label==='预览') return false
             for(let k in objInput){
                 if(objInput[k].isRequire && !objInput[k].value){
                     this.$message.warning({
@@ -107,7 +112,7 @@ export default {
                 else{
                     //todo 这里向后端发送留言
                     const { id:articleId,category_id:categoryId } = this.item
-                    const { objImage:{src:userAvatar},objInput:{QQ:{value:userName},Email:{value:userEmail}},objTextarea:{value:userComment} } = commentFrom
+                    const { objImage:{src:userAvatar},objInput:{QQ:{value:userName},Email:{value:userEmail}},objTextarea:{value:userComment} } = commentForm
                     const form ={articleId,categoryId,userAvatar, userName, userEmail, userComment}
                     this.setComment(form)
                 }
@@ -118,8 +123,12 @@ export default {
             if(!data) {
                 this.$message.success("评论成功")
                 this.commentArr = await this.getComment()
-                this.commentFrom.objTextarea.value=""
+                this.commentForm.objTextarea.value=""
             }
+        },
+        handleReply(commentId){
+            console.log(commentId,this.isReplyShow )
+            this.isReplyShow === commentId ? this.isReplyShow = "":this.isReplyShow = commentId
         }
 
     },
@@ -220,7 +229,7 @@ export default {
         }
     }
     .foot{
-        //background-color: pink;
+        padding-top: j(15);
     }
     .title {
         padding-bottom: j(5);
