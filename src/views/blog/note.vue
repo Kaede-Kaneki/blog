@@ -24,7 +24,14 @@
                                    v-show="isReplyShow===item.comment_id"
                                    @click="handleClick(replyForm,item)">
                         </b-comment>
-                        <b-comment v-for="reply in item.children" :key="reply.reply_id" :comment-content="reply" :is-comment="true" @click="handleReply(reply.reply_id)"></b-comment>
+                        <b-comment v-for="reply in item.children" :key="reply.reply_id" :comment-content="reply" :is-comment="true" @click="handleReply(reply.reply_id)">
+                            <b-comment :key="reply.reply_id"
+                                       :comment-from="replyForm"
+                                       :is-comment="false"
+                                       v-show="isReplyShow===reply.reply_id"
+                                       @click="handleClick(replyForm,item)">
+                            </b-comment>
+                        </b-comment>
                     </b-comment>
                     <b-card filter text v-if="!commentArr.length">
                         暂时没有评论
@@ -159,6 +166,7 @@ export default {
         //     const data = await this.$api.reqGetReply({'articleId': articleId})
         // },
         handleReply(commentId) {
+            console.log(commentId)
             this.isReplyShow === commentId ? this.isReplyShow = "" : this.isReplyShow = commentId
         }
 
