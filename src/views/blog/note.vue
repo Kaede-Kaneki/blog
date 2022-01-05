@@ -25,9 +25,9 @@
                                    @click="handleClick(replyForm)">
                         </b-comment>
                     </b-comment>
-                    <!--                    <b-card filter text v-if="!commentArr.length">-->
-                    <!--                        暂时没有评论-->
-                    <!--                    </b-card>-->
+                    <b-card filter text v-if="!commentArr.length">
+                        暂时没有评论
+                    </b-card>
                 </div>
             </div>
         </b-card>
@@ -126,12 +126,11 @@ export default {
             const data = await this.$api.reqSetComment(form)
             if (!data) {
                 this.$message.success("评论成功")
-                this.commentArr = await this.getComment()
+                await this.getComment()
                 this.commentForm.objTextarea.value = ""
             }
         },
         handleReply(commentId) {
-            console.log(commentId, this.isReplyShow)
             this.isReplyShow === commentId ? this.isReplyShow = "" : this.isReplyShow = commentId
         }
 
