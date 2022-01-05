@@ -53,6 +53,7 @@ export default {
 }
 .padding{
     border-radius: j(5);
-    padding: j(5) j(10)
+    padding: j(5) j(10);
+    margin:j(3) 0;
 }
 </style>

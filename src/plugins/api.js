@@ -8,7 +8,6 @@ export const $api = {
     reqSetComment:(data) => curl(`${baseURL}/doc/setComment`,data,"post"),
     reqGetComment:(data) =>curl(`${baseURL}/doc/getComment`,data,"get"),
     reqSetReply:(data)=>curl(`${baseURL}/doc/setReply`,data,"post"),
-    reqGetReply:(data)=>curl(`${baseURL}/doc/getReply`,data,"get"),
     reqPoemToken:(data)=>curl(`${poems}/token`,data,"get"),
     reqPoem:(data)=>curl(`${poems}/sentence`,data,"get"),
 }

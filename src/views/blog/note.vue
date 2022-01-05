@@ -17,18 +17,18 @@
                            @click="handleClick(commentForm)"></b-comment>
                 <div class="comment">
                     <b-comment v-for="item in commentArr" :key="item.comment_id" :comment-content="item"
-                               :is-comment="true" @click="handleReply(item.comment_id)">
-                        <b-comment :key="item.comment_id"
+                               :is-comment="true" @click="handleReply(item.uuid)">
+                        <b-comment :key="item.uuid"
                                    :comment-from="replyForm"
                                    :is-comment="false"
-                                   v-show="isReplyShow===item.comment_id"
+                                   v-show="isReplyShow===item.uuid"
                                    @click="handleClick(replyForm,item)">
                         </b-comment>
-                        <b-comment v-for="reply in item.children" :key="reply.reply_id" :comment-content="reply" :is-comment="true" @click="handleReply(reply.reply_id)">
-                            <b-comment :key="reply.reply_id"
+                        <b-comment v-for="reply in item.children" :key="reply.reply_id" :comment-content="reply" :is-comment="true" @click="handleReply(reply.uuid)">
+                            <b-comment :key="reply.uuid"
                                        :comment-from="replyForm"
                                        :is-comment="false"
-                                       v-show="isReplyShow===reply.reply_id"
+                                       v-show="isReplyShow===reply.uuid"
                                        @click="handleClick(replyForm,item)">
                             </b-comment>
                         </b-comment>
@@ -157,14 +157,11 @@ export default {
             const data = await this.$api.reqSetReply(form)
             if (!data) {
                 this.$message.success("评论成功")
+                await this.getComment()
+                this.isReplyShow=""
                 this.replyForm.objTextarea.value = ""
             }
         },
-        // async getReply(){
-        //     let {item} = this
-        //     const {id: articleId} = item
-        //     const data = await this.$api.reqGetReply({'articleId': articleId})
-        // },
         handleReply(commentId) {
             console.log(commentId)
             this.isReplyShow === commentId ? this.isReplyShow = "" : this.isReplyShow = commentId
