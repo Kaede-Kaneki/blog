@@ -5,8 +5,10 @@ const poems='/poems'
 export const $api = {
     reqMd: (data) => curl(`${baseURL}/doc/md`, data,"get"),
     reqArticle: (data) => curl(`${baseURL}/doc/article`, data,"get"),
-    reqGetComment:(data) =>curl(`${baseURL}/doc/getComment`,data,"get"),
     reqSetComment:(data) => curl(`${baseURL}/doc/setComment`,data,"post"),
+    reqGetComment:(data) =>curl(`${baseURL}/doc/getComment`,data,"get"),
+    reqSetReply:(data)=>curl(`${baseURL}/doc/setReply`,data,"post"),
+    reqGetReply:(data)=>curl(`${baseURL}/doc/getReply`,data,"get"),
     reqPoemToken:(data)=>curl(`${poems}/token`,data,"get"),
     reqPoem:(data)=>curl(`${poems}/sentence`,data,"get"),
 }

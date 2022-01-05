@@ -6,6 +6,7 @@ export default {
             GitHubUrl: "https://github.com/Kaede-Kaneki",
             BiLi: "https://space.bilibili.com/13102775",
             commentForm: {
+                isReply:false,
                 objImage: {
                     src: require("src/assets/image/Avatar.png"),
                     alt: "",
@@ -47,6 +48,7 @@ export default {
                 },
             },
             replyForm: {
+                isReply:true,
                 objImage: {
                     src: require("src/assets/image/Avatar.png"),
                     alt: "",

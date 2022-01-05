@@ -1,7 +1,7 @@
 <template>
     <div class="b-comment">
         <b-image v-if="!isComment" :src="commentFrom.objImage.src" alt="avatar"></b-image>
-        <b-image v-if="isComment" :src="commentContent.user_avatar||require('src/assets/image/Avatar.png')"
+        <b-image v-if="isComment" :src="commentContent.user_avatar||commentContent.reply_avatar||require('src/assets/image/Avatar.png')"
                  alt="avatar"></b-image>
         <!--   回复  -->
         <div class="b-comment-desc" v-if="!isComment">
@@ -31,11 +31,11 @@
         <!--   评论  -->
         <div class="b-comment-desc" v-if="isComment">
             <div class="b-comment-user">
-                <span class="b-comment-username">{{ commentContent.user_name }}</span>
+                <span class="b-comment-username">{{ commentContent.user_name||commentContent.reply_name }}</span>
                 <span>{{ formatDate(commentContent.update_time) }}</span>
             </div>
             <b-card padding text>
-                <p class="b-comment-usercomment">{{ commentContent.user_comment }}</p>
+                <p class="b-comment-usercomment">{{ commentContent.user_comment||commentContent.reply_comment }}</p>
             </b-card>
             <i class="b-comment-reply iconfont icon-pinglun" @click="handleReply">回复</i>
             <slot></slot>

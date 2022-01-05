@@ -22,8 +22,9 @@
                                    :comment-from="replyForm"
                                    :is-comment="false"
                                    v-show="isReplyShow===item.comment_id"
-                                   @click="handleClick(replyForm)">
+                                   @click="handleClick(replyForm,item)">
                         </b-comment>
+                        <b-comment v-for="reply in item.children" :key="reply.reply_id" :comment-content="reply" :is-comment="true" @click="handleReply(reply.reply_id)"></b-comment>
                     </b-comment>
                     <b-card filter text v-if="!commentArr.length">
                         暂时没有评论
@@ -55,6 +56,7 @@ export default {
         this.setStorage(this.$route.query.item)
         this.updateStorage()
         this.getComment()
+        this.getReply()
     },
     methods: {
         setStorage(item) {
@@ -78,15 +80,9 @@ export default {
         formatTimeToStr(date, fmt) {
             return commonObj.formatTimeToStr(new Date(date), fmt)
         },
-        async getComment() {
-            let {item} = this
-            const {id: articleId} = item
-            const data = await this.$api.reqGetComment({'articleId': articleId})
-            this.commentArr = data
-        },
         // 表单验证
-        handleClick(commentForm) {
-            const {objTextarea, objInput} = commentForm
+        handleClick(commentForm,user) {
+            const {isReply,objTextarea, objInput} = commentForm
             let value = objTextarea.value
             for (let k in objInput) {
                 if (objInput[k].isRequire && !objInput[k].value) {
@@ -111,14 +107,27 @@ export default {
                     objTextarea.value = ""
                 } else {
                     //todo 这里向后端发送留言
-                    const {id: articleId, category_id: categoryId} = this.item
-                    const {
-                        objImage: {src: userAvatar},
-                        objInput: {QQ: {value: userName}, Email: {value: userEmail}},
-                        objTextarea: {value: userComment}
-                    } = commentForm
-                    const form = {articleId, categoryId, userAvatar, userName, userEmail, userComment}
-                    this.setComment(form)
+                    if(isReply){
+                        const {id: articleId, category_id: categoryId} = this.item
+                        const {
+                            objImage: {src: replyAvatar},
+                            objInput: {QQ: {value: replyName}, Email: {value: replyEmail}},
+                            objTextarea: {value: replyComment}
+                        } = commentForm
+                        const {comment_id:commentId} =user
+                        const form = {commentId,articleId, categoryId, replyAvatar, replyName, replyEmail, replyComment}
+                        this.setReply(form)
+                    }
+                    else{
+                        const {id: articleId, category_id: categoryId} = this.item
+                        const {
+                            objImage: {src: userAvatar},
+                            objInput: {QQ: {value: userName}, Email: {value: userEmail}},
+                            objTextarea: {value: userComment}
+                        } = commentForm
+                        const form = {articleId, categoryId, userAvatar, userName, userEmail, userComment}
+                        this.setComment(form)
+                    }
                 }
             }
         },
@@ -130,6 +139,25 @@ export default {
                 this.commentForm.objTextarea.value = ""
             }
         },
+        async getComment() {
+            let {item} = this
+            const {id: articleId} = item
+            const data = await this.$api.reqGetComment({'articleId': articleId})
+            console.log('data =>',data)
+            this.commentArr = data
+        },
+        async setReply(form){
+            const data = await this.$api.reqSetReply(form)
+            if (!data) {
+                this.$message.success("评论成功")
+                this.replyForm.objTextarea.value = ""
+            }
+        },
+        // async getReply(){
+        //     let {item} = this
+        //     const {id: articleId} = item
+        //     const data = await this.$api.reqGetReply({'articleId': articleId})
+        // },
         handleReply(commentId) {
             this.isReplyShow === commentId ? this.isReplyShow = "" : this.isReplyShow = commentId
         }
