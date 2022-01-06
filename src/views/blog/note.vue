@@ -11,7 +11,7 @@
                 <span class="head-tag">{{ item.category_name }}</span>
                 <span class="head-date">{{ formatTimeToStr(item.create_time, 'yyyy-MM-dd hh:mm') }}</span>
             </div>
-            <div class="markdown-body" v-highlight v-html="item.content"></div>
+            <div ref="content" class="markdown-body" v-highlight v-html="item.content"></div>
             <div class="foot">
                 <b-comment :comment-from="commentForm" :is-comment="false"
                            @click="handleClick(commentForm)"></b-comment>
@@ -39,9 +39,9 @@
                 </div>
             </div>
         </b-card>
-        <b-card filter class="note-menu" ref="menu">
+        <b-card filter class="note-menu" ref="menu" >
             <h1 class="title">目录</h1>
-            <div class="list" v-html="title"></div>
+            <div class="list" ref="list" v-html="title" @click="handleGo"></div>
         </b-card>
     </div>
 </template>
@@ -63,7 +63,6 @@ export default {
         this.setStorage(this.$route.query.item)
         this.updateStorage()
         this.getComment()
-        this.getReply()
     },
     methods: {
         setStorage(item) {
@@ -71,9 +70,9 @@ export default {
         },
         updateStorage() {
             this.item = JSON.parse(sessionStorage.getItem("article"))
-            this.regTest()
+            this.regArticle()
         },
-        regTest() {
+        regArticle() {
             let res = ''
             let reg = /<h[2-6][^>]*>(.*?)<\/h[2-6]>/g
             this.title = commonObj.regMatch(this.item.content, reg)
@@ -150,7 +149,6 @@ export default {
             let {item} = this
             const {id: articleId} = item
             const data = await this.$api.reqGetComment({'articleId': articleId})
-            console.log('data =>',data)
             this.commentArr = data
         },
         async setReply(form){
@@ -163,10 +161,16 @@ export default {
             }
         },
         handleReply(commentId) {
-            console.log(commentId)
             this.isReplyShow === commentId ? this.isReplyShow = "" : this.isReplyShow = commentId
+        },
+        // 目录跳转
+        handleGo(event){
+            let eventId=event.target.id
+            let eventNodeName=event.target.nodeName
+            let target=document.getElementById(`${eventId}`)
+            let targetNodeName=document.getElementById(`${eventId}`).nodeName
+            if(eventNodeName === targetNodeName) document.documentElement.scrollTop = target.offsetTop
         }
-
     },
 }
 </script>
