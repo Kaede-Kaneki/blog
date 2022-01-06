@@ -56,6 +56,9 @@ export default {
         border-radius: j(3);
         background-color: $transparent-white;
     }
+    &-content::-webkit-scrollbar{
+       @extend %dn;
+    }
     &-count{
         @extend %pa;
         @extend %r0;
