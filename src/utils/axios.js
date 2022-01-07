@@ -24,7 +24,7 @@ function endLoading() {
 }
 
 const config = {
-    timeout: 5000, // Timeout
+    timeout: 60 * 1000, // Timeout
     withCredentials: false, // Check cross-site Access-Control
 };
 
@@ -41,7 +41,6 @@ _axios.interceptors.request.use(
     config => {
         startLoading()
         // 这里的config包含每次请求的内容
-        config.timeout = 60 * 1000
         // console.log('request success =>', config)
         const {url, method, params, data, headers} = config
         if (url === '/poems/sentence') {
