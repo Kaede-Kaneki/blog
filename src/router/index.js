@@ -20,7 +20,6 @@ const routes = [
     {
         path: '/',
         name: 'Index',
-        redirect:' ',
         component: () => import('src/views/index.vue'),
         children: [
             {
